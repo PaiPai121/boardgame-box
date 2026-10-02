@@ -453,6 +453,26 @@
     return { totals, categories, science, final: state.phase === 'gameover' };
   }
   function score(state, index) { return scoreBreakdown(state, index).totals; }
+  function civilizationInfo(state, index) {
+    insist(Number.isInteger(index) && state?.players?.[index], '没有这位玩家的文明');
+    const player = state.players[index], board = wonder(player), effects = allEffects(player);
+    const counts = Object.fromEntries(Object.keys(D.TYPES).map(type => [type, 0]));
+    const cards = player.built.map(id => {
+      const card = CARD.get(id); counts[card.type]++;
+      return { id: card.id, key: card.key, name: card.name, type: card.type, age: card.age,
+        cost: card.cost, effect: { ...card.effect }, chain: [...chainKeys(card)] };
+    });
+    const science = { compass: 0, gear: 0, tablet: 0, wild: 0 };
+    for (const effect of effects) if (effect.science) science[effect.science]++;
+    return { name: player.name, coins: player.coins, shields: shields(player), science, counts, cards,
+      wonder: { id: board.id, name: board.name, city: board.city, resource: board.resource, side: player.side,
+        completed: player.stages.length, total: stages(player).length },
+      stages: stages(player).map((stage, at) => ({ number: at + 1, built: at < player.stages.length,
+        next: state.phase !== 'gameover' && at === player.stages.length, cost: stage.cost, effect: { ...stage.effect } })),
+      production: production(player), tradeProduction: tradeProduction(player),
+      tradeDiscounts: [...new Set(effects.map(effect => effect.trade).filter(Boolean))],
+      military: [...player.military], score: score(state, index) };
+  }
   function finish(state) {
     state.phase = 'gameover';
     const ranking = state.players.map((player, index) => ({ index, total: score(state, index).total,
@@ -514,6 +534,6 @@
     }
     return true;
   }
-  root.WondersEngine = Object.freeze({ D, CARD, WONDER, newGame, actions, bonusActions, play, playBonus, score, scoreBreakdown, shields,
+  root.WondersEngine = Object.freeze({ D, CARD, WONDER, newGame, actions, bonusActions, play, playBonus, score, scoreBreakdown, civilizationInfo, shields,
     production, tradeProduction, paymentFor, chooseAI, validate, neighbors, stages, chainKeys });
 })(typeof window === 'undefined' ? globalThis : window);

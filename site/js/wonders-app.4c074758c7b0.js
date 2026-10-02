@@ -44,6 +44,7 @@
   let showRules = false;
   let showSymbols = false;
   let scorePlayer = null, scoreCategory = null;
+  let cityPlayer = null, cityFilter = 'all', citySection = 'buildings', scoreReturnCity = null;
   let handoff = false;
   let lastHuman = 0;
   let timer = null;
@@ -65,6 +66,26 @@
   }[ch])); }
   function defaultName(index, ai) { return ai ? AI_NAMES[index ? index - 1 : 6] + '（简单）' :
     index ? '玩家 ' + (index + 1) : '玩家'; }
+  function viewerIndex() {
+    if (Room.active && Number.isInteger(Room.snapshot?.mine) && Room.snapshot.mine >= 0) return Room.snapshot.mine;
+    if (!state.players[state.current]?.ai) return state.current;
+    return state.players[lastHuman] ? lastHuman : 0;
+  }
+  function positionLabel(index) {
+    const at = viewerIndex(), seats = E.neighbors(state, at);
+    return index === at ? '本位' : index === seats.left ? '左邻' : index === seats.right ? '右邻' : (index + 1) + 'P';
+  }
+  function productionChips(slots) {
+    const grouped = new Map();
+    slots.forEach(slot => grouped.set(slot.options, (grouped.get(slot.options) || 0) + 1));
+    return [...grouped].map(([options, count]) => {
+      const names = [...options].map(symbol => D.R[symbol]);
+      return '<span class="w-production-chip"' + helpAttr(names.length > 1 ?
+        '可选产能：每回合' + (count > 1 ? '有 ' + count + ' 组，各自' : '') + '从' + names.join('、') + '中任选 1 份；不能同时生产全部选项。' :
+        names[0] + '产能：每回合提供 ' + count + ' 份；资源不会被消耗。') + '>' + [...options].map(icon).join('<i>/</i>') +
+        (count > 1 ? '<b>×' + count + '</b>' : '') + '</span>';
+    }).join('');
+  }
   function save() {
     if (Room.active) return;
     try {
@@ -141,19 +162,20 @@
     return symbol ? '<img class="w-chain-icon" data-chain-symbol="' + symbol.id +
       '" src="assets/wonders/icons/chains/' + symbol.id + '.svg" alt="' + esc(symbol.name) + '连锁标识">' : '';
   }
-  function chainInfo(item) {
+  function chainInfo(item, owner = state.current, inspecting = false) {
     const previous = E.chainKeys(item).map(key => BY_KEY.get(key));
     const next = [...BY_KEY.values()].filter(card => E.chainKeys(card).includes(item.key));
-    const isBuilt = card => state.players[state.current].built.some(id => E.CARD.get(id).key === card.key);
+    const isBuilt = card => state.players[owner].built.some(id => E.CARD.get(id).key === card.key);
     const unlocked = previous.some(isBuilt);
     if (!previous.length && !next.length) return '<div class="w-chain w-no-chain">无连锁关系</div>';
     return '<div class="w-chain' + (unlocked ? ' unlocked' : '') + '">' +
       previous.map(card => '<div class="w-chain-row"' + helpAttr('连锁标识：' + D.CHAIN_SYMBOLS[item.key].name + '。已建造《' + card.name + '》时，《' + item.name + '》可以免费建造；多个前置满足任意一个即可。也可选择普通资源建造。') +
         '><span class="w-chain-label">前置建筑</span><span class="w-chain-chip' + (isBuilt(card) ? ' built' : '') + '">' + chainIcon(item) +
-        '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><em>' + (isBuilt(card) ? '已建 · 连锁免费' : '未建') + '</em></span></span></div>').join('') +
+        '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><em>' + (isBuilt(card) ? inspecting ? '已建' : '已建 · 连锁免费' : '未建') + '</em></span></span></div>').join('') +
       (next.length ? '<div class="w-chain-row"><span class="w-chain-label">解锁建筑</span><div class="w-chain-options">' +
-        next.map(card => '<span class="w-chain-chip"' + helpAttr('连锁标识：' + D.CHAIN_SYMBOLS[card.key].name + '。建成《' + item.name + '》后，抽到《' + card.name + '》（时代' + card.age + '）时可连锁免费建造。标识用于匹配建筑，不是资源或科技奖励。') + '>' +
-          chainIcon(card) + '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><span class="w-chain-age">（时代' + card.age + '）</span></span></span>').join('') + '</div></div>' : '') + '</div>';
+        next.map(card => '<span class="w-chain-chip' + (inspecting && isBuilt(card) ? ' built' : '') + '"' + helpAttr('连锁标识：' + D.CHAIN_SYMBOLS[card.key].name + '。建成《' + item.name + '》后，抽到《' + card.name + '》（时代' + card.age + '）时可连锁免费建造。标识用于匹配建筑，不是资源或科技奖励。') + '>' +
+          chainIcon(card) + '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><span class="w-chain-age">（时代' + card.age + '）</span>' +
+          (inspecting ? '<em>' + (isBuilt(card) ? '已建' : '未建 · 可解锁') + '</em>' : '') + '</span></span>').join('') + '</div></div>' : '') + '</div>';
   }
   function effectText(effect) {
     const parts = [];
@@ -223,8 +245,7 @@
     const active = (Room.active && state.phase === 'draft' ? !state.picks[index] : (state.networkCurrent ?? state.current) === index) && ['draft', 'bonus'].includes(state.phase);
     const w = E.WONDER.get(player.wonder);
     const total = E.score(state, index).total;
-    const position = index === state.current ? '本位' : index === E.neighbors(state, state.current).left ? '左邻' :
-      index === E.neighbors(state, state.current).right ? '右邻' : '';
+    const position = positionLabel(index);
     return '<article class="w-player' + (active ? ' active' : '') + '" data-motion-player="' + index + '" data-player="' + index + '"><div class="w-player-top">' +
       '<span class="w-player-index">' + (index + 1) + 'P</span><span class="w-player-tag">' + (position || (player.ai ? '电脑' : '真人')) + '</span></div>' +
       '<h3>' + esc(player.name) + '</h3><p>' + esc(w.city) + ' · ' + (player.side === 'a' ? '白昼' : '夜晚') + '</p>' +
@@ -232,14 +253,10 @@
       '><b>' + icon('$') + player.coins + '</b> 金币</span><span' + helpAttr('盾牌：每时代结束时分别与左右邻座比较。胜利在第一、二、三时代分别得 1、3、5 分；失败扣 1 分。') +
       '><b>' + icon('shields') + E.shields(player) + '</b> 军力</span><button class="w-player-score" data-score-player="' + index +
       '" aria-label="查看' + esc(player.name) + '的计分明细，' + total + ' 分" title="点击查看每项分数的来源"><b>' + icon('points') + total + '</b> 分 · 明细</button></div>' +
-      '<div class="w-player-resources">' + E.production(player).map(slot => {
-        const names = [...slot.options].map(symbol => D.R[symbol]);
-        return '<span' + helpAttr(names.length > 1 ? '可选产能：每回合从' + names.join('、') +
-          '中任选 1 份；资源不会被消耗。' : names[0] + '产能：每回合提供 1 份；资源不会被消耗。') +
-          '>' + [...slot.options].map(icon).join('/') + '</span>';
-      }).join('') + '</div>' +
-      '<div class="w-player-bottom"' + helpAttr('建筑是已建造的牌；奇迹数字表示已完成阶段 / 全部阶段。奇迹阶段按顺序建造。') +
-      '>建筑 ' + player.built.length + ' · 奇迹 ' + player.stages.length + '/' + E.stages(player).length + '</div></article>';
+      '<div class="w-player-resources">' + productionChips(E.production(player)) + '</div>' +
+      '<div class="w-player-bottom"><button class="w-player-buildings" data-city-player="' + index + '" title="查看全部已建建筑、效果和连锁" aria-label="查看' + esc(player.name) +
+      '的已建建筑">建筑 ' + player.built.length + ' · 查看</button><button data-city-player="' + index + '" data-city-section="wonder" aria-label="查看' +
+      esc(player.name) + '的奇迹进度">奇迹 ' + player.stages.length + '/' + E.stages(player).length + '</button></div></article>';
   }
   function actionButton(cardId, mode, label, action, reason) {
     const unavailable = !action;
@@ -277,19 +294,74 @@
       '<div class="w-card-actions"><button class="w-action freeBuild" data-bonus-card="' + cardId +
       '">从弃牌堆免费建造</button></div></div></article>';
   }
-  function wonderPanel(player) {
+  function wonderPanel(player, heading = '你的奇迹') {
     const w = E.WONDER.get(player.wonder);
-    return '<section class="w-wonder-panel"><div class="w-wonder-head"><div><span class="w-eyebrow">你的奇迹</span><h2>' +
+    return '<section class="w-wonder-panel"><div class="w-wonder-head"><div><span class="w-eyebrow">' + esc(heading) + '</span><h2>' +
       esc(w.name) + '</h2><p>' + (player.side === 'a' ? '白昼 A 面' : '夜晚 B 面') + ' · 初始生产 ' + D.R[w.resource] +
       '</p></div><div class="w-wonder-seal"' + helpAttr(player.side === 'a' ? '☼ 白昼 A 面：这座奇迹的 A 面阶段。' : '☾ 夜晚 B 面：这座奇迹的 B 面阶段。') +
       '>' + (player.side === 'a' ? '☼' : '☾') + '</div></div>' +
       '<div class="w-wonder-art"' + helpAttr('《' + w.name + '》' + (player.side === 'a' ? '白昼 A 面' : '夜晚 B 面') +
       '。起始资源：' + D.R[w.resource] + '。奇迹阶段需按顺序建造；本局费用与效果以下方中文说明为准。') +
       '><img src="assets/wonders/boards/' + esc(w.id) + '-' + player.side + '.jpg" alt="' + esc(w.name) + '奇迹版图" decoding="async"></div><div class="w-stages">' +
-      E.stages(player).map((stage, index) => '<div class="w-stage' + (index < player.stages.length ? ' done' : index === player.stages.length ? ' next' : '') + '"><small>阶段 ' +
-      (index + 1) + '</small>' + effectSymbols(stage.effect) + '<strong' + helpAttr('第 ' + (index + 1) + ' 阶段：' + effectText(stage.effect) +
+      E.stages(player).map((stage, index) => '<div class="w-stage' + (index < player.stages.length ? ' done' : index === player.stages.length && state.phase !== 'gameover' ? ' next' : '') + '"><small>阶段 ' +
+      (index + 1) + ' · ' + (index < player.stages.length ? '已建' : index === player.stages.length && state.phase !== 'gameover' ? '下一阶段' : '未建') + '</small>' + effectSymbols(stage.effect) + '<strong' + helpAttr('第 ' + (index + 1) + ' 阶段：' + effectText(stage.effect) +
         '。费用：' + costText(stage.cost) + '。需要按顺序建造。') + '>' + effectText(stage.effect) + '</strong><span>' + resourceList(stage.cost) +
       '</span></div>').join('') + '</div></section>';
+  }
+  function cityCard(card, index) {
+    const item = E.CARD.get(card.id);
+    return '<article class="w-city-card w-card ' + card.type + '" data-built-card="' + card.id + '" style="--card-color:' + D.COLORS[card.type] + '">' +
+      '<div class="w-city-card-art"' + helpAttr('《' + card.name + '》：已建造的' + D.TYPES[card.type] + '。效果：' + effectText(card.effect) +
+      '。原建造需求：' + costText(card.cost) + '；费用和效果以中文说明为准。') + '><img src="assets/wonders/cards/' + card.key +
+      '.jpg" alt="' + esc(card.name) + '卡图" loading="lazy"><small>时代 ' + card.age + ' · 已建</small></div><div class="w-card-content">' +
+      '<div class="w-card-type"' + helpAttr(TYPE_HELP[card.type]) + '>' + D.TYPES[card.type] + '</div><h3>' + esc(card.name) + '</h3>' +
+      effectSymbols(card.effect) + '<p>' + esc(effectText(card.effect)) + '</p><div class="w-city-card-cost"><small>原建造需求</small>' + resourceList(card.cost) +
+      '</div>' + chainInfo(item, index, true) + '</div></article>';
+  }
+  function renderCivilization() {
+    const index = cityPlayer, player = state.players[index], info = E.civilizationInfo(state, index), neighbors = E.neighbors(state, index);
+    const cards = info.cards.filter(card => cityFilter === 'all' || card.type === cityFilter);
+    const science = Object.entries(info.science).filter(([_symbol, count]) => count).map(([symbol, count]) => '<span' +
+      helpAttr(symbol === 'wild' ? '任意科技：计分时可选罗盘、齿轮或泥板；计分明细会显示总分最高的分配。' :
+      { compass: '罗盘', gear: '齿轮', tablet: '泥板' }[symbol] + '数量；同类平方分与成套奖励见计分明细。') + '>' +
+      (symbol === 'wild' ? '<b>任意</b>' : icon(symbol)) + ' ×' + count + '</span>').join('');
+    const trades = info.tradeDiscounts.map(trade => '<li>' + esc(effectText({ trade })) + '</li>').join('');
+    const view = index + ':' + cityFilter + ':' + citySection;
+    return '<div class="w-modal-backdrop w-city-backdrop"><section class="w-modal w-score-modal w-city-modal" data-city-view="' + view +
+      '" role="dialog" aria-modal="true" aria-labelledby="w-city-title"><div class="w-score-toolbar w-city-toolbar"><h2 id="w-city-title">文明详情 <span>· ' + esc(info.name) + '</span></h2>' +
+      '<button class="w-score-close" data-action="close-city" aria-label="关闭文明详情">关闭 ×</button></div><div class="w-city-heading"><div><span class="w-eyebrow">' +
+      positionLabel(index) + ' · ' + (player.ai ? '电脑 · 简单' : '真人') + '</span><h3>' + esc(info.name) + '</h3><p>' + esc(info.wonder.name) +
+      ' · ' + (info.wonder.side === 'a' ? '白昼 A 面' : '夜晚 B 面') + '</p></div><button class="w-city-score-link" data-score-player="' + index +
+      '">' + icon('points') + '<b>' + info.score.total + '</b><span>' + (state.phase === 'gameover' ? '最终得分' : '当前预估') + ' · 查看明细</span></button></div>' +
+      '<nav class="w-score-player-tabs w-city-player-tabs" aria-label="选择查看的文明">' + state.players.map((item, at) => '<button data-city-player="' + at +
+      '" aria-pressed="' + (at === index) + '"><small>' + positionLabel(at) + '</small>' + esc(item.name) + '</button>').join('') + '</nav>' +
+      '<p class="w-city-neighbors">' + esc(info.name) + '的左邻：<button data-city-player="' + neighbors.left + '">' + esc(state.players[neighbors.left].name) +
+      '</button> · 右邻：<button data-city-player="' + neighbors.right + '">' + esc(state.players[neighbors.right].name) + '</button></p>' +
+      '<div class="w-city-stats"><span>' + icon('$') + '<b>' + info.coins + '</b> 金币</span><span>' + icon('shields') + '<b>' + info.shields +
+      '</b> 军力</span><span>' + icon('stage') + '<b>' + info.wonder.completed + '/' + info.wonder.total + '</b> 奇迹阶段</span><span><i class="w-mini-card"></i><b>' +
+      info.cards.length + '</b> 已建建筑</span></div><div class="w-city-economy"><section><h4>全部产能</h4><div class="w-city-production">' +
+      productionChips(info.production) + '</div><p>每回合可重复使用。带斜线的一组选其中一种；同组选项不能同时生产。</p></section><section><h4>可供邻座购买的产能</h4>' +
+      '<div class="w-city-production" data-city-trade-production>' + productionChips(info.tradeProduction) + '</div><p>来自初始资源和棕色、灰色建筑；贸易优惠以购买方为准。</p></section>' +
+      '<section><h4>科技符号</h4><div class="w-city-science">' + (science || '<span class="w-city-muted">尚无科技符号</span>') +
+      '</div><p>任意科技保留为可选符号，计分明细显示当前的最优分配。</p></section><section><h4>贸易优惠</h4>' +
+      (trades ? '<ul class="w-city-trades">' + trades + '</ul>' : '<p class="w-city-muted">尚无贸易优惠</p>') + '</section></div>' +
+      '<div class="w-city-section-tabs" role="group" aria-label="文明内容"><button data-city-section="buildings" aria-pressed="' + (citySection === 'buildings') +
+      '">已建建筑 · ' + info.cards.length + '</button><button data-city-section="wonder" aria-pressed="' + (citySection === 'wonder') + '">奇迹进度 · ' +
+      info.wonder.completed + '/' + info.wonder.total + '</button></div>' +
+      (citySection === 'wonder' ? '<div class="w-city-wonder">' + wonderPanel(player, '奇迹进度') + '</div>' :
+        '<nav class="w-city-filters" aria-label="按建筑类型筛选"><button data-city-filter="all" aria-pressed="' + (cityFilter === 'all') +
+        '">全部 <b>' + info.cards.length + '</b></button>' + Object.entries(D.TYPES).map(([type, name]) => '<button data-city-filter="' + type +
+        '" aria-pressed="' + (cityFilter === type) + '"><i class="w-mini-card" style="background:' + D.COLORS[type] + '"></i>' + name + ' <b>' + info.counts[type] +
+        '</b></button>').join('') + '</nav><p class="w-city-note">以下是' + esc(info.name) + '已完成的建筑。卡牌效果中的“自己”和“左右邻座”均以该文明为准。</p>' +
+        (cards.length ? '<div class="w-city-buildings">' + cards.map(card => cityCard(card, index)).join('') + '</div>' :
+          '<div class="w-city-empty"><h3>' + (info.cards.length ? '还没有这类建筑' : '尚未建造建筑') + '</h3><p>' +
+          (info.cards.length ? '可切换其他建筑类型或文明查看。' : '建造完成后，建筑、效果和连锁关系会自动出现在这里。') + '</p></div>')) +
+      '<div class="w-modal-actions"><button class="w-primary" data-action="close-city">返回对局</button></div></section></div>';
+  }
+  function closeCivilization() {
+    const index = cityPlayer;
+    cityPlayer = null; scoreReturnCity = null; hideTooltip(); renderOverlay();
+    root.querySelector('.w-player-buildings[data-city-player="' + index + '"]')?.focus();
   }
   function scoreTable() {
     const categories = SCORE_CATEGORIES;
@@ -387,8 +459,10 @@
   }
   function closeScores() {
     const index = scorePlayer;
-    scorePlayer = null; scoreCategory = null; hideTooltip(); renderOverlay();
-    root.querySelector('[data-score-player="' + index + '"]')?.focus();
+    scorePlayer = null; scoreCategory = null;
+    if (scoreReturnCity !== null && state?.players[scoreReturnCity]) cityPlayer = scoreReturnCity;
+    scoreReturnCity = null; hideTooltip(); renderOverlay();
+    (cityPlayer !== null ? overlay.querySelector('.w-city-score-link') : root.querySelector('[data-score-player="' + index + '"]'))?.focus();
   }
   function renderGame() {
     const current = state.players[state.current];
@@ -445,6 +519,17 @@
       '<div class="w-modal-actions"><button class="w-primary" data-action="close-symbols">知道了</button></div></section></div>';
   }
   function renderOverlay() {
+    if (cityPlayer !== null && state?.players[cityPlayer]) {
+      const previous = overlay.querySelector('.w-city-modal');
+      const retain = previous?.dataset.cityView === cityPlayer + ':' + cityFilter + ':' + citySection;
+      const scroll = retain ? previous.scrollTop : 0;
+      const focused = retain && previous.contains(document.activeElement);
+      overlay.innerHTML = renderCivilization();
+      const next = overlay.querySelector('.w-city-modal');
+      if (focused) next.querySelector('[data-action="close-city"]').focus({ preventScroll: true });
+      next.scrollTop = scroll;
+      return;
+    }
     if (scorePlayer !== null && state?.players[scorePlayer]) {
       const previous = overlay.querySelector('.w-score-modal');
       const retain = previous?.dataset.scoreView === scorePlayer + ':' + (scoreCategory || '');
@@ -501,13 +586,13 @@
       name: seat.name.trim() || defaultName(index, seat.ai), ai: seat.ai, side: seat.side
     }));
     state = E.newGame(seats, Date.now());
-    screen = 'game'; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; lastHuman = 0; aiError = ''; startTime = Date.now();
+    screen = 'game'; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; cityPlayer = null; scoreReturnCity = null; cityFilter = 'all'; citySection = 'buildings'; lastHuman = 0; aiError = ''; startTime = Date.now();
     save(); render(); scheduleAI();
   }
   function resume() {
     if (!savedState) return;
     state = JSON.parse(JSON.stringify(savedState));
-    screen = 'game'; showRules = false; showSymbols = false; scorePlayer = null; aiError = ''; startTime = Date.now();
+    screen = 'game'; showRules = false; showSymbols = false; scorePlayer = null; cityPlayer = null; scoreReturnCity = null; aiError = ''; startTime = Date.now();
     handoff = ['draft', 'bonus'].includes(state.phase) && !state.players[state.current].ai && humans() > 1;
     render(); scheduleAI();
   }
@@ -560,16 +645,18 @@
   }, true);
   window.addEventListener('resize', hideTooltip);
   document.addEventListener('keydown', event => {
-    if (scorePlayer !== null && event.key === 'Tab') {
+    if ((scorePlayer !== null || cityPlayer !== null) && event.key === 'Tab') {
       const modal = overlay.querySelector('.w-score-modal');
-      const focusable = [...modal.querySelectorAll('button,summary')].filter(node => node.getClientRects().length);
+      const focusable = [...modal.querySelectorAll('button,summary,[tabindex="0"]')].filter(node => node.getClientRects().length);
       const first = focusable[0], last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!modal.contains(document.activeElement)) { event.preventDefault(); (event.shiftKey ? last : first).focus(); }
+      else if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
     if (event.key !== 'Escape') return;
     hideTooltip();
     if (scorePlayer !== null) { closeScores(); return; }
+    if (cityPlayer !== null) { closeCivilization(); return; }
     if (showSymbols) { showSymbols = false; renderOverlay(); scheduleAI(); }
   });
   root.addEventListener('input', event => {
@@ -585,6 +672,7 @@
   });
   document.addEventListener('click', event => {
     if (event.target.matches('.w-score-backdrop')) { closeScores(); return; }
+    if (event.target.matches('.w-city-backdrop')) { closeCivilization(); return; }
     const help = event.target.closest?.('[data-w-tip]');
     if (help) {
       if (tooltipPinned && tooltipAnchor === help) hideTooltip();
@@ -595,9 +683,37 @@
     hideTooltip();
     const target = event.target.closest('button');
     if (!target) return;
+    if (target.dataset.cityPlayer !== undefined && state) {
+      const index = Number(target.dataset.cityPlayer);
+      if (!Number.isInteger(index) || !state.players[index]) return;
+      const open = cityPlayer !== null;
+      cityPlayer = index; scorePlayer = null; scoreReturnCity = null;
+      if (!open) { cityFilter = 'all'; citySection = target.dataset.citySection || 'buildings'; }
+      hideTooltip(); renderOverlay();
+      overlay.querySelector('[data-action="close-city"]')?.focus();
+      if (!open && citySection === 'wonder') overlay.querySelector('.w-city-section-tabs')?.scrollIntoView({ block: 'start' });
+      return;
+    }
+    if (cityPlayer !== null && target.dataset.cityFilter !== undefined) {
+      if (!['all', ...Object.keys(D.TYPES)].includes(target.dataset.cityFilter)) return;
+      cityFilter = target.dataset.cityFilter; hideTooltip(); renderOverlay();
+      overlay.querySelector('[data-city-filter="' + cityFilter + '"]')?.focus({ preventScroll: true });
+      overlay.querySelector('.w-city-filters')?.scrollIntoView({ block: 'start' });
+      return;
+    }
+    if (cityPlayer !== null && target.dataset.citySection !== undefined) {
+      if (!['buildings', 'wonder'].includes(target.dataset.citySection)) return;
+      citySection = target.dataset.citySection; hideTooltip(); renderOverlay();
+      overlay.querySelector('.w-city-section-tabs [data-city-section="' + citySection + '"]')?.focus({ preventScroll: true });
+      overlay.querySelector('.w-city-section-tabs')?.scrollIntoView({ block: 'start' });
+      return;
+    }
     if (target.dataset.scorePlayer !== undefined && state) {
       const index = Number(target.dataset.scorePlayer);
       if (!Number.isInteger(index) || !state.players[index]) return;
+      if (cityPlayer !== null) scoreReturnCity = cityPlayer;
+      else if (scorePlayer === null) scoreReturnCity = null;
+      cityPlayer = null;
       scorePlayer = index; scoreCategory = target.dataset.scoreCategory || null;
       hideTooltip(); renderOverlay();
       overlay.querySelector('[data-action="close-scores"]')?.focus();
@@ -609,13 +725,14 @@
     if (action === 'start') return start();
     if (action === 'continue') return resume();
     if (action === 'menu') {
-      clearTimeout(timer); screen = 'setup'; state = null; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; render(); return;
+      clearTimeout(timer); screen = 'setup'; state = null; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; cityPlayer = null; scoreReturnCity = null; render(); return;
     }
     if (action === 'symbols') { clearTimeout(timer); showSymbols = true; showRules = false; renderOverlay(); return; }
     if (action === 'close-symbols') { showSymbols = false; renderOverlay(); scheduleAI(); return; }
     if (action === 'rules') { clearTimeout(timer); showRules = true; renderOverlay(); return; }
     if (action === 'close-rules') { showRules = false; renderOverlay(); scheduleAI(); return; }
     if (action === 'close-scores') { closeScores(); return; }
+    if (action === 'close-city') { closeCivilization(); return; }
     if (action === 'save') { save(); message('对局已保存到本机'); return; }
     if (action === 'handoff') { handoff = false; render(); scheduleAI(); return; }
     if (action === 'retry-ai') { aiError = ''; render(); scheduleAI(); return; }
