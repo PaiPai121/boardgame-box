@@ -31,6 +31,8 @@
     redNeighbors: '左右邻座的红色牌', blueNeighbors: '左右邻座的蓝色牌'
   };
   const AI_NAMES = ['阿塔罗斯', '克娄巴特拉', '尼布甲尼撒', '菲迪亚斯', '阿基米德', '托勒密', '哈德良'];
+  const SCORE_CATEGORIES = { military: '军事', treasury: '金币', wonder: '奇迹', civilian: '民用',
+    science: '科技', commerce: '商业', guild: '行会' };
   const setupSeats = Array.from({ length: 7 }, (_, index) => ({
     name: index === 0 ? '玩家' : AI_NAMES[index - 1] + '（简单）',
     ai: index !== 0, side: 'a', customName: false
@@ -41,6 +43,7 @@
   let screen = 'setup';
   let showRules = false;
   let showSymbols = false;
+  let scorePlayer = null, scoreCategory = null;
   let handoff = false;
   let lastHuman = 0;
   let timer = null;
@@ -227,8 +230,8 @@
       '<h3>' + esc(player.name) + '</h3><p>' + esc(w.city) + ' · ' + (player.side === 'a' ? '白昼' : '夜晚') + '</p>' +
       '<div class="w-player-numbers"><span' + helpAttr('◈ 金币：可支付建筑费用和购买邻座资源；游戏结束时每 3 枚剩余金币得 1 分。') +
       '><b>' + icon('$') + player.coins + '</b> 金币</span><span' + helpAttr('盾牌：每时代结束时分别与左右邻座比较。胜利在第一、二、三时代分别得 1、3、5 分；失败扣 1 分。') +
-      '><b>' + icon('shields') + E.shields(player) + '</b> 军力</span><span' + helpAttr('胜利分：当前已获得的分数估算；科技、金币及已建建筑会计入。') +
-      '><b>' + icon('points') + total + '</b> 分</span></div>' +
+      '><b>' + icon('shields') + E.shields(player) + '</b> 军力</span><button class="w-player-score" data-score-player="' + index +
+      '" aria-label="查看' + esc(player.name) + '的计分明细，' + total + ' 分" title="点击查看每项分数的来源"><b>' + icon('points') + total + '</b> 分 · 明细</button></div>' +
       '<div class="w-player-resources">' + E.production(player).map(slot => {
         const names = [...slot.options].map(symbol => D.R[symbol]);
         return '<span' + helpAttr(names.length > 1 ? '可选产能：每回合从' + names.join('、') +
@@ -289,15 +292,103 @@
       '</span></div>').join('') + '</div></section>';
   }
   function scoreTable() {
-    const categories = { military: '军事', treasury: '金币', wonder: '奇迹', civilian: '民用',
-      science: '科技', commerce: '商业', guild: '行会' };
+    const categories = SCORE_CATEGORIES;
     const scores = state.players.map((player, index) => ({ player, index, score: E.score(state, index) }))
       .sort((a, b) => b.score.total - a.score.total || b.player.coins - a.player.coins);
     return '<table class="w-scores"><thead><tr><th>文明</th>' + Object.values(categories).map(name => '<th>' + name + '</th>').join('') +
       '<th>总分</th></tr></thead><tbody>' + scores.map(entry => '<tr' + (state.winners.includes(entry.index) ? ' class="winner"' : '') +
       '><td><strong>' + esc(entry.player.name) + '</strong><small>' + esc(E.WONDER.get(entry.player.wonder).city) + '</small></td>' +
-      Object.keys(categories).map(key => '<td>' + entry.score[key] + '</td>').join('') + '<td><b>' + entry.score.total +
-      '</b></td></tr>').join('') + '</tbody></table>';
+      Object.keys(categories).map(key => '<td><button class="w-score-cell" data-score-player="' + entry.index + '" data-score-category="' + key +
+        '" aria-label="查看' + esc(entry.player.name) + '的' + categories[key] + '计分明细">' + entry.score[key] + '</button></td>').join('') +
+      '<td><button class="w-score-cell w-score-total-cell" data-score-player="' + entry.index + '" aria-label="查看' + esc(entry.player.name) + '的全部计分明细"><b>' +
+      entry.score.total + '</b><small>查看明细</small></button></td></tr>').join('') + '</tbody></table>';
+  }
+  function scoreSourceName(source) {
+    return source.kind === 'card' ? source.name : E.WONDER.get(source.wonder).name + ' · 阶段 ' + source.stage;
+  }
+  function scoreCategoryIcon(key) {
+    if (key === 'science') return icon('gear');
+    if (['military', 'treasury', 'wonder'].includes(key)) return icon({ military: 'shields', treasury: '$', wonder: 'stage' }[key]);
+    return '<i class="w-mini-card" style="background:' + D.COLORS[{ civilian: 'blue', commerce: 'yellow', guild: 'purple' }[key]] + '"></i>';
+  }
+  function scoreRow(row, index) {
+    let name, formula, sources = '', art = '';
+    if (row.source) {
+      name = scoreSourceName(row.source);
+      if (row.source.kind === 'card') art = '<img class="w-score-art" src="assets/wonders/cards/' + E.CARD.get(row.source.cardId).key + '.jpg" alt="" loading="lazy">';
+      else art = '<span class="w-score-stage">' + icon('stage') + '<small>' + row.source.stage + '</small></span>';
+    }
+    if (row.kind === 'conflict') {
+      name = '第' + ['一', '二', '三'][row.age - 1] + '时代 · ' + (row.side === 'left' ? '左邻' : '右邻') + ' ' + state.players[row.opponent].name;
+      formula = '军力 ' + row.shields + ' 对 ' + row.opponentShields + ' · ' + (row.points > 0 ? '胜利' : row.points < 0 ? '战败' : '平局');
+      art = '<span class="w-score-stage">' + icon('shields') + '</span>';
+    } else if (row.kind === 'legacyMilitary') {
+      name = '旧存档军事标记';
+      formula = row.count + ' 枚 × ' + row.value + ' 分；原存档未记录时代与邻座';
+    } else if (row.kind === 'treasury') {
+      name = '剩余金币折算';
+      formula = row.coins + ' 枚金币 ÷ 3 = ' + row.points + ' 分，余 ' + row.remainder + ' 枚不计分';
+      art = '<span class="w-score-stage">' + icon('$') + '</span>';
+    } else if (row.kind === 'scienceSymbol') {
+      name = { compass: '罗盘', gear: '齿轮', tablet: '泥板' }[row.symbol];
+      formula = row.count + ' × ' + row.count + ' = ' + row.points + ' 分';
+      art = '<span class="w-score-stage">' + icon(row.symbol) + '</span>';
+      sources = row.sources.length ? '<div class="w-score-sources">' + row.sources.map(source => '<span>' + esc(scoreSourceName(source)) +
+        (source.symbol === 'wild' ? ' <em>任意科技 → ' + name + '</em>' : '') + '</span>').join('') + '</div>' : '<div class="w-score-sources">尚无此科技符号</div>';
+    } else if (row.kind === 'scienceSets') {
+      name = '三种科技成套奖励';
+      formula = row.count + ' 套 × 7 = ' + row.points + ' 分；每套各含罗盘、齿轮、泥板 1 个';
+      art = '<span class="w-score-set">' + ['compass', 'gear', 'tablet'].map(icon).join('') + '</span>';
+    } else if (row.counted) {
+      const { what, count, basis } = row.counted;
+      if (what === 'allStages') formula = '已建 ' + basis[0].count + '/' + basis[0].required + ' 个奇迹阶段 · ' +
+        (count ? '全部完成' : '尚未全部完成') + ' × ' + row.rate + ' = ' + row.points + ' 分';
+      else {
+        formula = COUNT_HELP[what] + ' ' + count + ' 个 × ' + row.rate + (row.fixed ? ' + 固定 ' + row.fixed : '') + ' = ' + row.points + ' 分';
+        const neighbors = E.neighbors(state, index);
+        sources = '<div class="w-score-basis">' + basis.map(item => esc(item.player === index ? '自己' :
+          (item.player === neighbors.left ? '左邻 ' : '右邻 ') + state.players[item.player].name) +
+          (item.type && what === 'brownGrayPurpleSelf' ? '的' + D.TYPES[item.type] : '') + ' ' + item.count +
+          (item.unit === 'stages' ? ' 阶段' : ' 张')).join(' + ') + '</div>';
+      }
+    } else if (row.science) formula = '任意科技计入「科技」项，此处不重复加分';
+    else if (row.points) formula = '固定胜利分 ' + row.points + ' 分';
+    else if (row.incomeOrTrade) formula = '金币收入或贸易优惠；剩余金币统一在「金币」项折算';
+    else formula = '此项没有直接胜利分';
+    const points = (row.points > 0 ? '+' : '') + row.points;
+    return '<li class="w-score-row"><div class="w-score-row-main">' + art + '<div><strong>' + esc(name) + '</strong><p>' + esc(formula) + '</p>' +
+      sources + '</div><b class="w-score-points' + (row.points < 0 ? ' negative' : row.points === 0 ? ' zero' : '') + '" data-score-row-points="' + row.points + '">' + points + '<small>分</small></b></div></li>';
+  }
+  function renderScoreDetails() {
+    const index = scorePlayer, player = state.players[index], detail = E.scoreBreakdown(state, index), total = detail.totals;
+    const keys = Object.keys(SCORE_CATEGORIES);
+    const selected = scoreCategory || keys.find(key => total[key] !== 0) || 'treasury';
+    return '<div class="w-modal-backdrop w-score-backdrop"><section class="w-modal w-score-modal" data-score-view="' + index + ':' + (scoreCategory || '') +
+      '" role="dialog" aria-modal="true" aria-labelledby="w-score-dialog-title">' +
+      '<div class="w-score-toolbar"><h2 id="w-score-dialog-title">计分明细</h2><button class="w-score-close" data-action="close-scores" aria-label="关闭计分明细">关闭 ×</button></div><div class="w-score-head"><div><span class="w-eyebrow">' +
+      (detail.final ? '最终得分' : '当前预估') + '</span><h3>' + esc(player.name) +
+      '</h3><p>' + esc(E.WONDER.get(player.wonder).name) + ' · ' + (player.side === 'a' ? '白昼 A 面' : '夜晚 B 面') + '</p></div>' +
+      '<div class="w-score-grand"><strong data-score-grand-total>' + total.total + '</strong><span>总分</span></div></div>' +
+      '<nav class="w-score-player-tabs" aria-label="选择文明">' + state.players.map((item, at) => '<button data-score-player="' + at +
+        '" aria-pressed="' + (at === index) + '">' + esc(item.name) + '</button>').join('') + '</nav>' +
+      '<p class="w-score-note">' + (detail.final ? '展开各项可查看具体来源。金币已按每 3 枚 1 分折算；同分时比较剩余金币。' :
+      '随建筑、金币及邻座情况实时更新。尚未结算的军事冲突不计入当前分数；终局仍会变化。') + '</p>' +
+      '<div class="w-score-summary">' + keys.map(key => '<button data-score-player="' + index + '" data-score-category="' + key + '">' +
+        scoreCategoryIcon(key) + '<span>' + SCORE_CATEGORIES[key] + '</span><b data-score-subtotal="' + key + '">' + total[key] + '</b></button>').join('') + '</div>' +
+      '<div class="w-score-categories">' + keys.map(key => '<details class="w-score-category" data-score-section="' + key + '"' + (selected === key ? ' open' : '') +
+        '><summary>' + scoreCategoryIcon(key) + '<strong>' + SCORE_CATEGORIES[key] + '</strong><span>' + total[key] + ' 分</span></summary><div class="w-score-category-content">' +
+        (key === 'science' && detail.science.wild ? '<p class="w-score-wild">' + detail.science.wild + ' 个任意科技已自动选择总分最高的组合：' +
+        Object.entries(detail.science.allocated).filter(([_symbol, count]) => count).map(([symbol, count]) =>
+          ({ compass: '罗盘', gear: '齿轮', tablet: '泥板' }[symbol]) + ' +' + count).join('、') + '。</p>' : '') +
+        (detail.categories[key].length ? '<ul class="w-score-rows">' + detail.categories[key].map(row => scoreRow(row, index)).join('') + '</ul>' :
+          '<p class="w-score-empty">' + (key === 'military' ? '尚无已结算的军事冲突。' : '尚无此类计分来源。') + '</p>') + '</div></details>').join('') + '</div>' +
+      '<footer class="w-score-addition"><span>合计核对</span><p>' + keys.map(key => SCORE_CATEGORIES[key] + ' ' + (total[key] < 0 ? '(' + total[key] + ')' : total[key])).join(' + ') +
+      ' = <b>' + total.total + ' 分</b></p></footer><div class="w-modal-actions"><button class="w-primary" data-action="close-scores">返回对局</button></div></section></div>';
+  }
+  function closeScores() {
+    const index = scorePlayer;
+    scorePlayer = null; scoreCategory = null; hideTooltip(); renderOverlay();
+    root.querySelector('[data-score-player="' + index + '"]')?.focus();
   }
   function renderGame() {
     const current = state.players[state.current];
@@ -314,7 +405,7 @@
       '<p>每轮从手牌中选一张：建造建筑、建造奇迹，或出售换取 3 金币。</p></section>' +
       '<section class="w-players" aria-label="玩家文明">' + state.players.map(playerTile).join('') + '</section>' +
       (state.phase === 'gameover' ? '<section class="w-results"><div class="w-eyebrow">文明终章</div><h2>' +
-        state.winners.map(index => esc(state.players[index].name)).join('、') + ' 获胜</h2><p>三时代已经结束，按总分排名；同分时比较剩余金币。</p>' +
+        state.winners.map(index => esc(state.players[index].name)).join('、') + ' 获胜</h2><p>三时代已经结束，按总分排名；同分时比较剩余金币。点击分类分数或总分可查看来源明细。</p>' +
         scoreTable() + '<button class="w-primary" data-action="menu">再开一局</button></section>' :
         '<div class="w-game-grid"><main class="w-draft"><div class="w-section-title"><div><span class="w-eyebrow">本轮选牌</span><h2>' +
         (current.ai ? esc(current.name) + ' 正在选牌' : bonus ? esc(current.name) + ' 的特殊行动' : esc(current.name) + ' 的手牌') + '</h2></div><span>' +
@@ -354,6 +445,19 @@
       '<div class="w-modal-actions"><button class="w-primary" data-action="close-symbols">知道了</button></div></section></div>';
   }
   function renderOverlay() {
+    if (scorePlayer !== null && state?.players[scorePlayer]) {
+      const previous = overlay.querySelector('.w-score-modal');
+      const retain = previous?.dataset.scoreView === scorePlayer + ':' + (scoreCategory || '');
+      const open = retain ? [...previous.querySelectorAll('details[open]')].map(node => node.dataset.scoreSection) : null;
+      const scroll = retain ? previous.scrollTop : 0;
+      const focused = retain && previous.contains(document.activeElement);
+      overlay.innerHTML = renderScoreDetails();
+      const next = overlay.querySelector('.w-score-modal');
+      if (open) next.querySelectorAll('details').forEach(node => { node.open = open.includes(node.dataset.scoreSection); });
+      if (focused) next.querySelector('[data-action="close-scores"]').focus({ preventScroll: true });
+      next.scrollTop = scroll;
+      return;
+    }
     if (showSymbols) { overlay.innerHTML = renderSymbols(); return; }
     if (showRules) {
       overlay.innerHTML = '<div class="w-modal-backdrop"><section class="w-modal"><button class="w-modal-close" data-action="close-rules" aria-label="关闭">×</button><span class="w-eyebrow">七大奇迹规则</span><h2>玩法速览</h2>' +
@@ -397,13 +501,13 @@
       name: seat.name.trim() || defaultName(index, seat.ai), ai: seat.ai, side: seat.side
     }));
     state = E.newGame(seats, Date.now());
-    screen = 'game'; handoff = false; showRules = false; showSymbols = false; lastHuman = 0; aiError = ''; startTime = Date.now();
+    screen = 'game'; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; lastHuman = 0; aiError = ''; startTime = Date.now();
     save(); render(); scheduleAI();
   }
   function resume() {
     if (!savedState) return;
     state = JSON.parse(JSON.stringify(savedState));
-    screen = 'game'; showRules = false; showSymbols = false; aiError = ''; startTime = Date.now();
+    screen = 'game'; showRules = false; showSymbols = false; scorePlayer = null; aiError = ''; startTime = Date.now();
     handoff = ['draft', 'bonus'].includes(state.phase) && !state.players[state.current].ai && humans() > 1;
     render(); scheduleAI();
   }
@@ -456,8 +560,16 @@
   }, true);
   window.addEventListener('resize', hideTooltip);
   document.addEventListener('keydown', event => {
+    if (scorePlayer !== null && event.key === 'Tab') {
+      const modal = overlay.querySelector('.w-score-modal');
+      const focusable = [...modal.querySelectorAll('button,summary')].filter(node => node.getClientRects().length);
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
     if (event.key !== 'Escape') return;
     hideTooltip();
+    if (scorePlayer !== null) { closeScores(); return; }
     if (showSymbols) { showSymbols = false; renderOverlay(); scheduleAI(); }
   });
   root.addEventListener('input', event => {
@@ -472,6 +584,7 @@
     if (event.target.matches('[data-seat-ai],[data-seat-side]')) syncSetup();
   });
   document.addEventListener('click', event => {
+    if (event.target.matches('.w-score-backdrop')) { closeScores(); return; }
     const help = event.target.closest?.('[data-w-tip]');
     if (help) {
       if (tooltipPinned && tooltipAnchor === help) hideTooltip();
@@ -482,17 +595,27 @@
     hideTooltip();
     const target = event.target.closest('button');
     if (!target) return;
+    if (target.dataset.scorePlayer !== undefined && state) {
+      const index = Number(target.dataset.scorePlayer);
+      if (!Number.isInteger(index) || !state.players[index]) return;
+      scorePlayer = index; scoreCategory = target.dataset.scoreCategory || null;
+      hideTooltip(); renderOverlay();
+      overlay.querySelector('[data-action="close-scores"]')?.focus();
+      if (scoreCategory) overlay.querySelector('[data-score-section="' + scoreCategory + '"]')?.scrollIntoView({ block: 'nearest' });
+      return;
+    }
     if (target.dataset.reason) { message(target.dataset.reason); return; }
     const action = target.dataset.action;
     if (action === 'start') return start();
     if (action === 'continue') return resume();
     if (action === 'menu') {
-      clearTimeout(timer); screen = 'setup'; state = null; handoff = false; showRules = false; showSymbols = false; render(); return;
+      clearTimeout(timer); screen = 'setup'; state = null; handoff = false; showRules = false; showSymbols = false; scorePlayer = null; render(); return;
     }
     if (action === 'symbols') { clearTimeout(timer); showSymbols = true; showRules = false; renderOverlay(); return; }
     if (action === 'close-symbols') { showSymbols = false; renderOverlay(); scheduleAI(); return; }
     if (action === 'rules') { clearTimeout(timer); showRules = true; renderOverlay(); return; }
     if (action === 'close-rules') { showRules = false; renderOverlay(); scheduleAI(); return; }
+    if (action === 'close-scores') { closeScores(); return; }
     if (action === 'save') { save(); message('对局已保存到本机'); return; }
     if (action === 'handoff') { handoff = false; render(); scheduleAI(); return; }
     if (action === 'retry-ai') { aiError = ''; render(); scheduleAI(); return; }

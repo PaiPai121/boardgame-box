@@ -1,5 +1,5 @@
 const PREFIX = 'boardgame-box-pages:' + self.registration.scope + ':';
-const CACHE = PREFIX + "0.9.0-preview.3-84d665f36882";
+const CACHE = PREFIX + "0.9.0-preview.4-5b76a0cf2176";
 const FILES = [
   "./index.html",
   "./splendor.html",
@@ -22,7 +22,7 @@ const FILES = [
   "./css/motion.83fe73f6543e.css",
   "./css/puerto.9880e47bc426.css",
   "./css/style.ed18622174cf.css",
-  "./css/wonders.07eaf0acaa6d.css",
+  "./css/wonders.bbd0288b2281.css",
   "./js/ai.903c0c07755c.js",
   "./js/app.9f9d67dd45d3.js",
   "./js/base-splendor-app.061d2b440f6e.js",
@@ -37,10 +37,10 @@ const FILES = [
   "./js/puerto-app.a94802aa78de.js",
   "./js/puerto-engine.8b017ce5c9f0.js",
   "./js/pwa.4d9f9209f378.js",
-  "./js/site-config.4f4763512f60.js",
-  "./js/wonders-app.c631a0611531.js",
+  "./js/site-config.468969d8f946.js",
+  "./js/wonders-app.a965b36eb338.js",
   "./js/wonders-data.a652580cdada.js",
-  "./js/wonders-engine.256e3cbaac95.js",
+  "./js/wonders-engine.423df3d0807e.js",
   "./assets/board-map-v2.png",
   "./assets/deck-back.svg",
   "./assets/hub-icon.png",

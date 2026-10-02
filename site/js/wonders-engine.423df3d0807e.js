@@ -327,9 +327,13 @@
   }
   function settleMilitary(state) {
     const value = [0, 1, 3, 5][state.age];
+    if (!Array.isArray(state.conflicts)) state.conflicts = [];
     for (let index = 0; index < state.players.length; index++) {
       const right = (index + 1) % state.players.length;
-      const difference = shields(state.players[index]) - shields(state.players[right]);
+      const strength = [shields(state.players[index]), shields(state.players[right])];
+      const difference = strength[0] - strength[1];
+      const points = difference > 0 ? [value, -1] : difference < 0 ? [-1, value] : [0, 0];
+      state.conflicts.push({ age: state.age, players: [index, right], shields: strength, points });
       if (difference > 0) {
         state.players[index].military.push(value);
         state.players[right].military.push(-1);
@@ -340,7 +344,7 @@
     }
     state.log.push('第 ' + state.age + ' 时代军事冲突结算完成。');
   }
-  function scienceScore(effects) {
+  function scienceDetail(effects) {
     const counts = { compass: 0, gear: 0, tablet: 0 };
     let wild = 0;
     for (const effect of effects) {
@@ -351,9 +355,14 @@
       return c.compass ** 2 + c.gear ** 2 + c.tablet ** 2 +
         7 * Math.min(c.compass, c.gear, c.tablet);
     }
-    let best = 0;
+    const base = { ...counts };
+    let best = -1, selected = { ...counts };
     function choose(n) {
-      if (!n) { best = Math.max(best, score(counts)); return; }
+      if (!n) {
+        const total = score(counts);
+        if (total > best) { best = total; selected = { ...counts }; }
+        return;
+      }
       for (const key of Object.keys(counts)) {
         counts[key]++;
         choose(n - 1);
@@ -361,28 +370,89 @@
       }
     }
     choose(wild);
-    return best;
+    const allocated = Object.fromEntries(Object.keys(counts).map(key => [key, selected[key] - base[key]]));
+    const sets = Math.min(selected.compass, selected.gear, selected.tablet);
+    return { total: best, base, counts: selected, wild, allocated, sets, setPoints: sets * 7 };
   }
-  function score(state, index) {
+  function scienceScore(effects) { return scienceDetail(effects).total; }
+  function countDetail(state, index, what) {
+    const { left, right } = neighbors(state, index);
+    const cardCount = (at, types) => state.players[at].built.filter(id => types.includes(CARD.get(id).type)).length;
+    let basis;
+    if (what === 'allStages') basis = [{ player: index, count: state.players[index].stages.length,
+      required: stages(state.players[index]).length, unit: 'stages' }];
+    else if (what === 'brownGrayPurpleSelf') basis = ['brown', 'gray', 'purple'].map(type =>
+      ({ player: index, type, count: cardCount(index, [type]), unit: 'cards' }));
+    else {
+      const indices = what.endsWith('All') ? [left, index, right] : what.endsWith('Neighbors') ? [left, right] : [index];
+      const type = what.replace(/(All|Neighbors|Self)$/, '');
+      basis = indices.map(at => ({ player: at, count: type === 'stages' ? state.players[at].stages.length : cardCount(at, [type]),
+        unit: type === 'stages' ? 'stages' : 'cards', ...(type !== 'stages' ? { type } : {}) }));
+    }
+    return { what, count: countOf(state, index, what), basis };
+  }
+  function scoreBreakdown(state, index) {
     const player = state.players[index];
-    const effects = allEffects(player);
-    const category = { military: player.military.reduce((a, b) => a + b, 0),
-      treasury: Math.floor(player.coins / 3), wonder: 0, civilian: 0, science: scienceScore(effects),
-      commerce: 0, guild: 0 };
+    const categories = { military: [], treasury: [], wonder: [], civilian: [], science: [], commerce: [], guild: [] };
+    const remaining = [...player.military];
+    for (const conflict of state.conflicts || []) {
+      if (!Array.isArray(conflict.players) || !Array.isArray(conflict.points) || !Array.isArray(conflict.shields)) continue;
+      const position = conflict.players.indexOf(index);
+      if (position < 0) continue;
+      const points = conflict.points[position], opponent = conflict.players[1 - position];
+      if (points) {
+        const token = remaining.indexOf(points);
+        if (token < 0) continue;
+        remaining.splice(token, 1);
+      }
+      categories.military.push({ kind: 'conflict', age: conflict.age, opponent,
+        side: opponent === neighbors(state, index).left ? 'left' : 'right',
+        shields: conflict.shields[position], opponentShields: conflict.shields[1 - position], points });
+    }
+    const legacy = new Map();
+    for (const points of remaining) legacy.set(points, (legacy.get(points) || 0) + 1);
+    for (const [value, count] of legacy) categories.military.push({ kind: 'legacyMilitary', value, count, points: value * count });
+    categories.treasury.push({ kind: 'treasury', coins: player.coins, remainder: player.coins % 3,
+      points: Math.floor(player.coins / 3) });
+    const scienceSources = [];
     for (const cardId of player.built) {
       const card = CARD.get(cardId);
       const effect = card.effect;
-      if (card.type === 'blue') category.civilian += effect.points || 0;
-      if (card.type === 'yellow') category.commerce += (effect.points || 0) +
-        (effect.pointsPer ? countOf(state, index, effect.pointsPer) * (effect.pointsRate || 1) : 0);
-      if (card.type === 'purple') category.guild += effect.guild ?
-        countOf(state, index, effect.guild) * (effect.guildRate || 1) : 0;
+      const source = { kind: 'card', cardId, name: card.name };
+      if (card.type === 'blue') categories.civilian.push({ kind: 'fixed', source, points: effect.points || 0 });
+      if (card.type === 'yellow' || card.type === 'purple') {
+        const key = card.type === 'yellow' ? 'commerce' : 'guild';
+        const condition = card.type === 'yellow' ? effect.pointsPer : effect.guild;
+        const fixed = card.type === 'yellow' ? effect.points || 0 : 0;
+        const rate = condition ? (card.type === 'yellow' ? effect.pointsRate : effect.guildRate) || 1 : 0;
+        const counted = condition ? countDetail(state, index, condition) : null;
+        categories[key].push({ kind: 'conditional', source, fixed, rate, counted, points: fixed + (counted?.count || 0) * rate,
+          ...(effect.science ? { science: effect.science } : {}),
+          ...(effect.coins || effect.coinsPer || effect.trade ? { incomeOrTrade: true } : {}) });
+      }
+      if (effect.science) scienceSources.push({ ...source, symbol: effect.science });
     }
-    for (let stage = 0; stage < player.stages.length; stage++) category.wonder +=
-      stages(player)[stage].effect.points || 0;
-    category.total = Object.values(category).reduce((a, b) => a + b, 0);
-    return category;
+    for (let stage = 0; stage < player.stages.length; stage++) {
+      const effect = stages(player)[stage].effect;
+      const source = { kind: 'stage', stage: stage + 1, wonder: player.wonder, side: player.side };
+      categories.wonder.push({ kind: 'fixed', source, points: effect.points || 0,
+        ...(effect.science ? { science: effect.science } : {}),
+        ...(effect.coins || effect.coinsPer || effect.trade ? { incomeOrTrade: true } : {}) });
+      if (effect.science) scienceSources.push({ ...source, symbol: effect.science });
+    }
+    const science = scienceDetail(scienceSources.map(source => ({ science: source.symbol })));
+    const allocation = Object.entries(science.allocated).flatMap(([symbol, count]) => Array(count).fill(symbol));
+    for (const source of scienceSources) source.assigned = source.symbol === 'wild' ? allocation.shift() : source.symbol;
+    science.sources = scienceSources;
+    for (const [symbol, count] of Object.entries(science.counts)) categories.science.push({ kind: 'scienceSymbol', symbol, count,
+      sources: scienceSources.filter(source => source.assigned === symbol), points: count ** 2 });
+    categories.science.push({ kind: 'scienceSets', count: science.sets, rate: 7, points: science.setPoints });
+    const totals = Object.fromEntries(Object.entries(categories).map(([key, rows]) =>
+      [key, rows.reduce((sum, row) => sum + row.points, 0)]));
+    totals.total = Object.values(totals).reduce((sum, points) => sum + points, 0);
+    return { totals, categories, science, final: state.phase === 'gameover' };
   }
+  function score(state, index) { return scoreBreakdown(state, index).totals; }
   function finish(state) {
     state.phase = 'gameover';
     const ranking = state.players.map((player, index) => ({ index, total: score(state, index).total,
@@ -444,6 +514,6 @@
     }
     return true;
   }
-  root.WondersEngine = Object.freeze({ D, CARD, WONDER, newGame, actions, bonusActions, play, playBonus, score, shields,
+  root.WondersEngine = Object.freeze({ D, CARD, WONDER, newGame, actions, bonusActions, play, playBonus, score, scoreBreakdown, shields,
     production, tradeProduction, paymentFor, chooseAI, validate, neighbors, stages, chainKeys });
 })(typeof window === 'undefined' ? globalThis : window);
