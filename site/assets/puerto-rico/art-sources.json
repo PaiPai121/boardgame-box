@@ -1,0 +1,378 @@
+{
+  "source": "https://www.riograndegames.com/wp-content/uploads/2019/08/Puerto-Rico-Deluxe-Rules.pdf",
+  "pdf_sha256": "d55058bde864f4216eecd14e2d3fabd244955972f3176e1b3bf64e5ed7afa697",
+  "edition": "2019 Deluxe: base game components only",
+  "assets": [
+    {
+      "file": "assets/puerto-rico/buildings/small_indigo.png",
+      "xref": 359,
+      "width": 260,
+      "height": 150,
+      "sha256": "988ecc2e40423910613f67b920b5f1240eb4ba2c8a7758ce5b9b1e1ad7145ee7"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/large_indigo.png",
+      "xref": 373,
+      "width": 260,
+      "height": 150,
+      "sha256": "335ce63a4469745fc3f05f1f22d6c2123482273182e10317ad16acd76aa8c9f3"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/small_sugar.png",
+      "xref": 375,
+      "width": 260,
+      "height": 150,
+      "sha256": "245d946a7808c04f637acec90b745a7218079467fdf52b48a591a8f93d47384b"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/large_sugar.png",
+      "xref": 377,
+      "width": 260,
+      "height": 150,
+      "sha256": "e0cd5ebce6234e747fb525a039df08318ad7628df8db2f5fa79a15d54a21b2eb"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/tobacco.png",
+      "xref": 379,
+      "width": 260,
+      "height": 150,
+      "sha256": "99f0d4c4abf896c7834448029738cac69d44d32adf783cbbb974371ba650fe06"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/coffee.png",
+      "xref": 381,
+      "width": 260,
+      "height": 150,
+      "sha256": "202321bff4706581a9fe798fccf7933f6f0c26f669679682f788e8830f107fc3"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/small_market.png",
+      "xref": 386,
+      "width": 260,
+      "height": 150,
+      "sha256": "5ae27e3140b9bfc77d9732d366eb13952d304516eed89f52ee53149de5ce8c40"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/hacienda.png",
+      "xref": 388,
+      "width": 260,
+      "height": 154,
+      "sha256": "f4b7510e5f3fb56b38c7a77fe6ae3a0e81f11f548a4737e5cf3429d37140fafb"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/construction_hut.png",
+      "xref": 390,
+      "width": 260,
+      "height": 151,
+      "sha256": "28653f90ac4227c0209795cbc18dfb743368ea01e6a8652bc954ef2655d2de75"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/small_warehouse.png",
+      "xref": 392,
+      "width": 260,
+      "height": 150,
+      "sha256": "032f3aa6ecd2de1796ff0b8b9ecb8acf26762cf29e3ef11f132735a49d1aebdc"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/hospice.png",
+      "xref": 394,
+      "width": 260,
+      "height": 150,
+      "sha256": "b12c39a986d78533895a6490331e616265fc4052e8743428c30f99be0e7c033b"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/office.png",
+      "xref": 396,
+      "width": 260,
+      "height": 150,
+      "sha256": "2b0446fa07877df5c4aa6777cdae72e4b1b6908382ed3d6e0ff35c86eb3bc1f7"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/large_market.png",
+      "xref": 403,
+      "width": 260,
+      "height": 150,
+      "sha256": "0627eeeef36c830af1ac89613ee450976c8ed64854710e65dd7121f5eeabd063"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/large_warehouse.png",
+      "xref": 405,
+      "width": 260,
+      "height": 150,
+      "sha256": "08c05487204121aa79a34ef10a9b9856ac527250460f37920cbc104db819e110"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/factory.png",
+      "xref": 407,
+      "width": 260,
+      "height": 150,
+      "sha256": "c69d734c6aefaec700a936caffe03243e31ea621cf84d9c46f9bcf6af22b91e2"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/university.png",
+      "xref": 409,
+      "width": 260,
+      "height": 150,
+      "sha256": "15de8af3145461ef5acbf03387a346a067ac07340b95278b22116beafef581b4"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/harbor.png",
+      "xref": 411,
+      "width": 260,
+      "height": 150,
+      "sha256": "57ec8b8dae6b999c887ad17ce0e7f05d84f234e21e91af786d09ba794430acb1"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/wharf.png",
+      "xref": 413,
+      "width": 260,
+      "height": 150,
+      "sha256": "47b9a29714ae7bd63a53cbc0f0c3da4ee3c36436ae28648fbd0ccce586b8731c"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/guild_hall.png",
+      "xref": 418,
+      "width": 252,
+      "height": 303,
+      "sha256": "2101c6e9c4872afb0aa21e3ed2828fae1ae19ad8f1f57c43fe53b3ac8525920c"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/residence.png",
+      "xref": 420,
+      "width": 252,
+      "height": 303,
+      "sha256": "88b2d93513975dd8ce636985da5dd27c2b7068579543f4f715aba6ce5edd3a68"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/fortress.png",
+      "xref": 422,
+      "width": 252,
+      "height": 303,
+      "sha256": "aa11b827893fab561ab0adbc3eb2f7de805069823e6e9f151cf2e63063a6b661"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/customs_house.png",
+      "xref": 424,
+      "width": 252,
+      "height": 303,
+      "sha256": "f3b21a6ae7dbb80aab8935e8859713fd8f386bf57ffdd3a62618fdb8b6129ff5"
+    },
+    {
+      "file": "assets/puerto-rico/buildings/city_hall.png",
+      "xref": 426,
+      "width": 246,
+      "height": 295,
+      "sha256": "5858c6a4d1387e57946e40e34865d1a62436c7afefa50fa34d6545aed668d825"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/indigo.png",
+      "xref": 228,
+      "width": 85,
+      "height": 85,
+      "sha256": "3f33d5b7cc85f0182642fc001d07adb48e5a4c4aa1dcdb2b7f0df2407a536db4"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/coffee.png",
+      "xref": 238,
+      "width": 85,
+      "height": 89,
+      "sha256": "7212828c8a962239751379a5c1b55e4964c9e59340136acbce5c8e349200818e"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/corn.png",
+      "xref": 357,
+      "width": 154,
+      "height": 154,
+      "sha256": "fac7e006c4ce4181aad666d8f0915838cf175615275b094a8ef7a22ef5e13abf"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/sugar.png",
+      "xref": 353,
+      "width": 154,
+      "height": 154,
+      "sha256": "58f5e4664f0249c5f90238053d7f3721e7c0cfbdaf3d620ac156cfe4961f5975"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/tobacco.png",
+      "xref": 355,
+      "width": 154,
+      "height": 154,
+      "sha256": "ea1ea6b09e2d63aa63f08dbba0de4683e96152c4d8e1a27af0861b7e5831b6d1"
+    },
+    {
+      "file": "assets/puerto-rico/plantations/quarry.png",
+      "xref": 246,
+      "width": 85,
+      "height": 85,
+      "sha256": "f5e3d47d504fe868b3f6804f3bed7e221b802de0d5176cccc1cced3bd748d3d5"
+    },
+    {
+      "file": "assets/puerto-rico/roles/settler.png",
+      "xref": 291,
+      "width": 236,
+      "height": 383,
+      "sha256": "5b01d612a0756cd9ae941514790745af27734b36b349f25dd82d030a578ae77f"
+    },
+    {
+      "file": "assets/puerto-rico/roles/builder.png",
+      "xref": 296,
+      "width": 236,
+      "height": 370,
+      "sha256": "6eb091d51712c94d99bc101efe44185f892214d6c383619f16e107b90146aa0b"
+    },
+    {
+      "file": "assets/puerto-rico/roles/mayor.png",
+      "xref": 298,
+      "width": 236,
+      "height": 387,
+      "sha256": "faa64b64cab2a6a515490c67d8673bc085f17fdc7e3440e684011c19a07bf495"
+    },
+    {
+      "file": "assets/puerto-rico/roles/craftsman.png",
+      "xref": 311,
+      "width": 237,
+      "height": 387,
+      "sha256": "f1ecf4c77face2b4fb59ae889a690b660e6cad9bf0efde44bacae328579901ae"
+    },
+    {
+      "file": "assets/puerto-rico/roles/trader.png",
+      "xref": 313,
+      "width": 236,
+      "height": 376,
+      "sha256": "d2b87da385d2cc9e2518021e2f6a8b89cd941c4aa93e0cd5992ea9756a99716f"
+    },
+    {
+      "file": "assets/puerto-rico/roles/captain.png",
+      "xref": 320,
+      "width": 236,
+      "height": 381,
+      "sha256": "bced60be20a47e7beda281a83f9c962d696c69e731fec3b99a0444497291be7e"
+    },
+    {
+      "file": "assets/puerto-rico/roles/prospector.png",
+      "xref": 325,
+      "width": 189,
+      "height": 297,
+      "sha256": "3859ec36035176a853ba85a5e3a8a41c7b6dc8087133cd5ec3429f038210bbb0"
+    },
+    {
+      "file": "assets/puerto-rico/boards/island.png",
+      "xref": 533,
+      "width": 1741,
+      "height": 1227,
+      "sha256": "92cc7daa5658e14768b15ddfb07b401bdde4bd20df7324de73c78469bc465ae6"
+    },
+    {
+      "file": "assets/puerto-rico/boards/market.png",
+      "xref": 626,
+      "width": 684,
+      "height": 360,
+      "sha256": "1ccb5035478f541b07164ba218d05f38ed5ffa806fe957fe261c56d1b81164e8"
+    },
+    {
+      "file": "assets/puerto-rico/boards/trading_house.png",
+      "xref": 315,
+      "width": 236,
+      "height": 387,
+      "sha256": "710e6ae614caa5c4bcfbb961db3c3fcc1ef968d64c46656f04c4bc97459b197f"
+    },
+    {
+      "file": "assets/puerto-rico/ships/colonist.png",
+      "xref": 304,
+      "width": 320,
+      "height": 532,
+      "sha256": "6e8c529d7384976b53c9ee2794c50a500ed8f6c56667e9bab467f788a10eb362"
+    },
+    {
+      "file": "assets/puerto-rico/ships/cargo.png",
+      "xref": 158,
+      "width": 195,
+      "height": 325,
+      "sha256": "4c4b1f3f4c25629718ee41753b4aaaa386dac2855468f806ba29e41ed1ec66ac"
+    },
+    {
+      "file": "assets/puerto-rico/ships/cargo6.png",
+      "xref": 162,
+      "width": 195,
+      "height": 325,
+      "sha256": "1cca50307530e3646051e65a44c4f1bb309bf0c79e14fcbe49fcdf3f8e044ce5"
+    },
+    {
+      "file": "assets/puerto-rico/ships/cargo7.png",
+      "xref": 166,
+      "width": 195,
+      "height": 325,
+      "sha256": "78f478b66228e2f9fb9984f20abbdc41dc98f20cf2f6042a635e67c7792735b2"
+    },
+    {
+      "file": "assets/puerto-rico/icons/corn.png",
+      "xref": 202,
+      "width": 59,
+      "height": 59,
+      "sha256": "a8883b87b4aec3e2252fed561c83f3fe3b66ff3e5b0c212e6fe4b6cc9047de40"
+    },
+    {
+      "file": "assets/puerto-rico/icons/indigo.png",
+      "xref": 178,
+      "width": 59,
+      "height": 59,
+      "sha256": "edfc3317e142a9c123ec27ff1e4aae63d7000418a00de85e545122d7fe901324"
+    },
+    {
+      "file": "assets/puerto-rico/icons/sugar.png",
+      "xref": 184,
+      "width": 59,
+      "height": 59,
+      "sha256": "d89bdf3d48b7b35e37b2fca54cf1d03b8a469628cfa6165f6486a573c9d39f2a"
+    },
+    {
+      "file": "assets/puerto-rico/icons/tobacco.png",
+      "xref": 196,
+      "width": 59,
+      "height": 59,
+      "sha256": "44c7fb61e8fc60f7dd4620a92a51eb02b0d29cdfeb55170294f0b89736c0db95"
+    },
+    {
+      "file": "assets/puerto-rico/icons/coffee.png",
+      "xref": 190,
+      "width": 59,
+      "height": 59,
+      "sha256": "265d995cc0c2a441c53af036a2049ad915132f48e175aeac9d9a13ece79093b8"
+    },
+    {
+      "file": "assets/puerto-rico/icons/coin.png",
+      "xref": 214,
+      "width": 64,
+      "height": 64,
+      "sha256": "00dd348eb57e86ffffd06496422ce2a8a77568694dc1f1ec04524a478e333857"
+    },
+    {
+      "file": "assets/puerto-rico/icons/vp.png",
+      "xref": 150,
+      "width": 75,
+      "height": 65,
+      "sha256": "a1e12d0675b24f0b623c030d1ecda0a8e579cc3b92ff38be4ec5933ca766d7b1"
+    },
+    {
+      "file": "assets/puerto-rico/icons/governor.png",
+      "xref": 520,
+      "width": 615,
+      "height": 626,
+      "sha256": "1c7e2231351eae135267a8be795adcdef03c3602a873e824b130a35c2cfe7c32"
+    },
+    {
+      "file": "assets/puerto-rico/decoration/sailing_ship.png",
+      "xref": 433,
+      "width": 745,
+      "height": 904,
+      "sha256": "bca381302c66d780d95a48bf38ad2663dc2fff20ff832cb4e0fcaac60d8fbe74"
+    },
+    {
+      "file": "assets/puerto-rico/decoration/parchment.png",
+      "xref": 4936,
+      "width": 2598,
+      "height": 3626,
+      "sha256": "e46cf06e9a88ab4ddaf84c411e811d6b5b9909a239a936248786898fdc6d275b"
+    }
+  ]
+}

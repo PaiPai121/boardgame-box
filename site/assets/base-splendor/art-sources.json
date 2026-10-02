@@ -1,0 +1,740 @@
+{
+  "files": [
+    {
+      "file": "cards/white-L1-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-01.png",
+      "source_sha256": "aafb0f41330d37e9a29738f6fea114c2866efa562705d5aa5f023ba2561c3d0f",
+      "sha256": "0426163d296e06614200395bcd14daa687efa2c023947e4b60feebab3bff1ee4",
+      "bytes": 37930
+    },
+    {
+      "file": "cards/white-L1-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-02.png",
+      "source_sha256": "6e02aafd006c5366f6ff78c18f1361935f68cbc859a5ecd945784e686fce51dd",
+      "sha256": "5e30a3e2f6fe7fc281803eaef7fe0182d6f416b199ee5f7ae10b177742e4f54b",
+      "bytes": 40242
+    },
+    {
+      "file": "cards/white-L1-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-03.png",
+      "source_sha256": "c937c87e992cf708891e44a198b013327f73bd219acc174e89bf30c4a3e7a324",
+      "sha256": "4b0b22be08ef43ecaa0e4c70fec307a5ce4ffa23856d4466163ebff6d0f91e8f",
+      "bytes": 42020
+    },
+    {
+      "file": "cards/white-L1-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-04.png",
+      "source_sha256": "9ddf6ce191f7a9b9e5b484ed85848b4da9a7e560350f089499742feae40f443c",
+      "sha256": "57e98d883cceca6172b3b53bdc7fbc6253f1fe7ed36c4925c226ffa2d18f703d",
+      "bytes": 43866
+    },
+    {
+      "file": "cards/white-L1-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-05.png",
+      "source_sha256": "10b48ef7ce3de51a58ad2fc11b345b06049cb6d05bc783be7ea1889f26adcdcb",
+      "sha256": "bf8c57653872c7387124740d447c8cdfb2560c00ab862932ffa42f9162787ff8",
+      "bytes": 44732
+    },
+    {
+      "file": "cards/white-L1-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-06.png",
+      "source_sha256": "211881bdfd81f637ec92e15d42f9357f33246df4a6c8168ca4ab344d0db8823e",
+      "sha256": "b34abed3026e8f5908134193f891fa87f5225b6abac7b90a4c4491c4c0dc5c22",
+      "bytes": 44372
+    },
+    {
+      "file": "cards/white-L1-07.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-07.png",
+      "source_sha256": "0678ebb22651dcafcc07958aed6d8d8b293da20748f36e445601230bbe3a98f9",
+      "sha256": "36a1b6644d060111233c222e1969cb719b2258ccb8fe298768decbcaa7fc2833",
+      "bytes": 40600
+    },
+    {
+      "file": "cards/white-L1-08.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L1-08.png",
+      "source_sha256": "19a96e18f740a8ed6b5f740255e696baee08eae27ff421dcc9c40a4e9ba6f920",
+      "sha256": "4d28899eb47fb87f9a6f66abf41e6d8d85192407830e4a72988fd06bf4d79b84",
+      "bytes": 41936
+    },
+    {
+      "file": "cards/white-L2-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-01.png",
+      "source_sha256": "7d93250fad03406f0ce1aa78d40afc69e1f4c9f2ca76dd70e6f3af82637c17cb",
+      "sha256": "6abbc4f13984d1eae2ef0edca770b5c623124d59694e2a3b22cd86cccd3feb5e",
+      "bytes": 57136
+    },
+    {
+      "file": "cards/white-L2-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-02.png",
+      "source_sha256": "a2212fc58184ee8104d2165edd4563e8f9b640fe350f4eb0479158737f415ab9",
+      "sha256": "89a09331a25cc4b1758c666fc3077a24d2e2ec2c1e73eb7d5fd816745ae0d92b",
+      "bytes": 56098
+    },
+    {
+      "file": "cards/white-L2-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-03.png",
+      "source_sha256": "972785238b716253634256c6e05394d41ff0ca8282eeb88f690ca16d076ad375",
+      "sha256": "4f32983a4a0d74f6ce3ec7785a0524fdf4e1bf234ebabbf7ffa99215b052662f",
+      "bytes": 56518
+    },
+    {
+      "file": "cards/white-L2-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-04.png",
+      "source_sha256": "50270761ffefd39dd0c1efc97ae88c0b462a05fc92f1b81ea30dc34087541eb9",
+      "sha256": "711567d46784f04a6533b38040eae46ca402febd7bf113d2a98e8cba997a9caf",
+      "bytes": 52928
+    },
+    {
+      "file": "cards/white-L2-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-05.png",
+      "source_sha256": "014a30b25a6bc87903b2b51787e92ffbb3e7b8d78f2f4a922047d665f035aab0",
+      "sha256": "72f8ffbc1aae689122c54f56427a244112e510b1716bad6f5ef7e2865b55e4ca",
+      "bytes": 54586
+    },
+    {
+      "file": "cards/white-L2-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L2-06.png",
+      "source_sha256": "95838c1c9a47696df959a680009bcb4158d4f1c07c6194694f564c4229bfbf4c",
+      "sha256": "6eb420987ffeaad0ebe368cdd167ef048c742ad4edfdf45c8e15beff2af26b2b",
+      "bytes": 53526
+    },
+    {
+      "file": "cards/white-L3-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L3-01.png",
+      "source_sha256": "7df8714341d682ff19557bcecb6d86363b4046f962590a0524e730e2a229ef88",
+      "sha256": "396a2116e586056973385403b1fe522c62dfae48465652fa0bd64a8ea571e703",
+      "bytes": 67798
+    },
+    {
+      "file": "cards/white-L3-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L3-02.png",
+      "source_sha256": "75e1d1f35c6ed6e712008b91726800667811cfca89e9a48a1288a7002696b2b7",
+      "sha256": "614368edf4d7bff6579d75099f8eb51c4b6480d62e35acc64f61cd43ec0f1659",
+      "bytes": 69018
+    },
+    {
+      "file": "cards/white-L3-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L3-03.png",
+      "source_sha256": "eaf37ed0889a4e174d4bf68ef8c52d3a008e845ab3c79e2ee5c1e23969104dde",
+      "sha256": "68492b55aacd4c9cf95dd00de850a8931336a1613e9ea846d9e32f70601f7fa6",
+      "bytes": 66896
+    },
+    {
+      "file": "cards/white-L3-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/white-L3-04.png",
+      "source_sha256": "d7986eeca042e529a0ce5c5a1e88b9ac5d52c94424ea961848e0b49e268ec122",
+      "sha256": "03b67e85620ed155232cb6c293dcc2433a81d6abc709d5df1e879f48b6fcd37a",
+      "bytes": 63198
+    },
+    {
+      "file": "cards/blue-L1-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-01.png",
+      "source_sha256": "ea8d828b2c5de9ab8dd826573dc1b9abc2f13f3ca65489b9305c4591e616cdb4",
+      "sha256": "aa6ae3795ceba1f31c0574a9bb22cd01aa93fdda2499269afc5e241666331ced",
+      "bytes": 56702
+    },
+    {
+      "file": "cards/blue-L1-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-02.png",
+      "source_sha256": "912635272716f58692617a659539296cb172de59f586270978273362e4d6d19b",
+      "sha256": "347024dd3443a1d477c95b8ed1ab57460ce574604398cc262b871d8139cef373",
+      "bytes": 61304
+    },
+    {
+      "file": "cards/blue-L1-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-03.png",
+      "source_sha256": "9e914981c0a80161a8b6cade46784e7d591678c321098d0472c26e07d073c016",
+      "sha256": "b95682712930ae7a432dae91830822099753c4d32495d4677f4844ad52527353",
+      "bytes": 59344
+    },
+    {
+      "file": "cards/blue-L1-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-04.png",
+      "source_sha256": "2fe78579e328462963adb0d24a8314fa219dcf404bd25d879f6b9c57f5be870a",
+      "sha256": "d9cbb21a793d4ead201e59c9ef06b82ac4e5ad8ecb4b8452a0d6828d58b4552a",
+      "bytes": 63640
+    },
+    {
+      "file": "cards/blue-L1-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-05.png",
+      "source_sha256": "b34ebc6862455d96f2bff4e1386c4d95ae841fc1c4ebc14da03e1fe2c9db7813",
+      "sha256": "1f1376538b9c5c9cbb5a6c0f1d52e56ad090edc1eebc3ca194ca3d77721832cc",
+      "bytes": 64288
+    },
+    {
+      "file": "cards/blue-L1-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-06.png",
+      "source_sha256": "16f98999f17770d6d9d085b45eb424b7f276b6e333f17ae755e7a1e87c017fe3",
+      "sha256": "ca4d5efa8a67600608789958e990a66c74dee2779be8c2eac86cad1a3d854e7f",
+      "bytes": 62294
+    },
+    {
+      "file": "cards/blue-L1-07.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-07.png",
+      "source_sha256": "bf0c00004fc2bb3655d745670d8477719a28466f6684ba5e33b2ce3c7f7c6167",
+      "sha256": "335e4b4227dcda56fce42c7e9639ee94fdf3e9b8133e21b69516158a964184bf",
+      "bytes": 59692
+    },
+    {
+      "file": "cards/blue-L1-08.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L1-08.png",
+      "source_sha256": "663cbf0fac43f7ad4f95b0083cf018b4704116c476c9e50f50f3ac0907496dfb",
+      "sha256": "6f384422c2b280b496b3ac58fbf50dc311e2a5f6569ceaa222fd6e90abfbfb5f",
+      "bytes": 58504
+    },
+    {
+      "file": "cards/blue-L2-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-01.png",
+      "source_sha256": "8c171ca189f934f3f25ec3969d68605ca054aded0f2d0d8dcaaa7cc4368b2d77",
+      "sha256": "244f308afa8954d9360e480b4b2b3a065f4775382c64d3e25907e90bdd400281",
+      "bytes": 56198
+    },
+    {
+      "file": "cards/blue-L2-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-02.png",
+      "source_sha256": "e5d4772b12b84e56c832b28bfa15a6fd97ba94936c1cedfe4868b5856df69aef",
+      "sha256": "f15c65a22cf1633f642881e3d3d3cb48d72cae4c835bb788884259a9a95fbffe",
+      "bytes": 57334
+    },
+    {
+      "file": "cards/blue-L2-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-03.png",
+      "source_sha256": "4d4dfdaf9c2a0007be820fd9fc62f5349eab8face9aa478587684aaba02ae75a",
+      "sha256": "dba327627f431beba842fd467ddad8b3d75e3e9de66115ff8d21dcb24c8555db",
+      "bytes": 61772
+    },
+    {
+      "file": "cards/blue-L2-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-04.png",
+      "source_sha256": "9dd98a8ba03a9feb38732106847a9de8169c724698392736be4e921d8f85e053",
+      "sha256": "18f576e3380f421f1b30d5badeccbf0df6ca5357cfa444df026386530f4b64b9",
+      "bytes": 60104
+    },
+    {
+      "file": "cards/blue-L2-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-05.png",
+      "source_sha256": "907d0340aaae95eabaf2dda6145b1026f4a04ab5e3a7f722fb7c7201d8cf6649",
+      "sha256": "8fb7e07b1665af1df48808a1135f711028107a92ede7afbfb04ddc7f894d5f73",
+      "bytes": 69046
+    },
+    {
+      "file": "cards/blue-L2-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L2-06.png",
+      "source_sha256": "d049d97e8d6b7fdb926eeeaa56430218ae5adb556e2795c9eff8ca6c6da2cf4f",
+      "sha256": "ec14c7fc8e60288f476d0ebf47a86074fa0241013beb2474f41776d67efa59c0",
+      "bytes": 67882
+    },
+    {
+      "file": "cards/blue-L3-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L3-01.png",
+      "source_sha256": "7a97f9e6d4d5ba2feaccb75cacb56f40f8e04fb636353ff3b2e35fe782169a40",
+      "sha256": "fe87fbab19598ee6e582e59630cbdd7f1366a84576cbe1315f5e9fd17dfb1a42",
+      "bytes": 67378
+    },
+    {
+      "file": "cards/blue-L3-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L3-02.png",
+      "source_sha256": "e1524e5a099dedd57470a713859f0a476a6aa515d43e71bb98f54aec5c223ea0",
+      "sha256": "a102f7681e1172ee2f508d7bf75571d5f6d44298ae79c3ea52db4b8dbe56c2cb",
+      "bytes": 75172
+    },
+    {
+      "file": "cards/blue-L3-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L3-03.png",
+      "source_sha256": "0d948c7a20d78a7f2eb268439518e80ee42cd1597d3d17da6b7532032190ea21",
+      "sha256": "dff1a789499e3118d22774001db73520221bcecaee1b35dfae2d58b646ba9e6a",
+      "bytes": 67642
+    },
+    {
+      "file": "cards/blue-L3-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/blue-L3-04.png",
+      "source_sha256": "d1a860e74497c4ef1176a7bbee731443027cdc1c4847541c1e08154e66b7c228",
+      "sha256": "baf5de14746055e031ed8b156ffc1da239413079bae137d3df5ee915cdb64ee8",
+      "bytes": 76250
+    },
+    {
+      "file": "cards/green-L1-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-01.png",
+      "source_sha256": "e05c9fcbff10e9f13dc0366cbabd788d32cc005758981deca7ad9631e0029d90",
+      "sha256": "b56cfbb9482363038cdcce97ca6ddbcdc3a5b24ec12987fb3222ddf323fafd63",
+      "bytes": 74258
+    },
+    {
+      "file": "cards/green-L1-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-02.png",
+      "source_sha256": "8d308b091871b78b1673cd7ad98d5c136faa1f4da3195338aaf1010f465821c2",
+      "sha256": "5a770bc4d8a15b41f611d6dbba943b910cc422b38b681b96af306c3a0dde8c58",
+      "bytes": 75794
+    },
+    {
+      "file": "cards/green-L1-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-03.png",
+      "source_sha256": "982bddfa39849931599cdccbec9c05b5909e3fc68f3a7895f3f8e3e9cb9bec37",
+      "sha256": "7b12eec0a8bd20d3b27d75dd31562f7d94bd233f81e0f3a52069431277c8292b",
+      "bytes": 78910
+    },
+    {
+      "file": "cards/green-L1-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-04.png",
+      "source_sha256": "e2360ac835f5de751b5a1ec4343b6d73d337101c2ec77361c0e90cc102238ddb",
+      "sha256": "85e8d6d71d0012a5f726d8ea0b5e040999175d7fe0d58a223f49de64939620af",
+      "bytes": 83532
+    },
+    {
+      "file": "cards/green-L1-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-05.png",
+      "source_sha256": "c7f2c23551fc057a2bf5260862a065b78904acefeab650cc7de8bd009f8b7239",
+      "sha256": "b07ff8302a5a5d2938251cd1c6869aa7cc57000f86b4779844b25a4c4e32da53",
+      "bytes": 85890
+    },
+    {
+      "file": "cards/green-L1-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-06.png",
+      "source_sha256": "cb93951274d6e3a7bc4a70541452f1e7c7178c0effd5e6851315ccec85bc178d",
+      "sha256": "747fad4c589b5dd8d206e08c7b65c7d5147b266b91dfcfbeafbe9f667481f60e",
+      "bytes": 90000
+    },
+    {
+      "file": "cards/green-L1-07.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-07.png",
+      "source_sha256": "c5084e768bdc2f0391e122b05175cbce3f0c030ede445b05540baf72b85cba92",
+      "sha256": "cdc657f67a2e9fc8ccbbaf520a67121611ded2ba78dd50a3c593a5716194e53e",
+      "bytes": 85800
+    },
+    {
+      "file": "cards/green-L1-08.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L1-08.png",
+      "source_sha256": "bcb5eefcaf086f7211658fc3764db074e7cbbf406036e1ba7508de491e78734c",
+      "sha256": "b9d16243d63e6a5cb23b15177c37b76ac9a630ad9986f3cabd9773cc1af8f47e",
+      "bytes": 83906
+    },
+    {
+      "file": "cards/green-L2-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-01.png",
+      "source_sha256": "ea38dba29812b7cd57368444bd613e7feb97b892181d12847c0d482c74a5dbed",
+      "sha256": "709174340857a66d6d92d2d33934308ad472dca619362cefdded7752f093c271",
+      "bytes": 65702
+    },
+    {
+      "file": "cards/green-L2-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-02.png",
+      "source_sha256": "fe8087d6f771d967c49cdbc52b4e775b464b438a3aa15b02bdbf07a42b35659f",
+      "sha256": "80e7d201c4974fc040696bbbaf2b9e7f45da767c0aa05e8b79cfd5c70a4522b9",
+      "bytes": 63504
+    },
+    {
+      "file": "cards/green-L2-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-03.png",
+      "source_sha256": "9c85f59f6818ad748f3e5d527b7b4b2a17923a6a3e44966517f5f2fa46206d81",
+      "sha256": "4b855fb02bc80f72ae8e7bab5e32e682cef22a37f8ce5ce69b794ad9b681fd35",
+      "bytes": 66368
+    },
+    {
+      "file": "cards/green-L2-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-04.png",
+      "source_sha256": "1f449534fc719ba880e8075de2cfede8c09664a2ab11713b65984e223b194897",
+      "sha256": "33dceab4cd67b97e1494f3adc4894228b9bf07e2c044d64c47e3b8e7a57d2783",
+      "bytes": 61138
+    },
+    {
+      "file": "cards/green-L2-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-05.png",
+      "source_sha256": "7aa32b42629ad9b85a256a86555e279f7421c51a52d38c9b7a3572d5ebadc6d8",
+      "sha256": "ccc2dc2968b42396d4b444460b3948cce7243c4911a3fe33be021ad4647fc6f3",
+      "bytes": 62320
+    },
+    {
+      "file": "cards/green-L2-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L2-06.png",
+      "source_sha256": "39536ff52457d809ab7af87f9803566e78d3cd0d22fd8c3a8e8a95a731ac2a1b",
+      "sha256": "048872b83ce6e0eecedbe221657d5e27aca683650f53043b2f1241f2d5b94a0f",
+      "bytes": 63218
+    },
+    {
+      "file": "cards/green-L3-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L3-01.png",
+      "source_sha256": "121502fe9f31ae0cf5b0e1bb8c355c39b13ed62cefdedc8c8d7a4f9f396f97c4",
+      "sha256": "309b00efe490124272853641fdc2dee3338cb03b003a489fc8790d13e1c1bc0d",
+      "bytes": 70944
+    },
+    {
+      "file": "cards/green-L3-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L3-02.png",
+      "source_sha256": "c2a841574744329348c6e4cb56f9b5cbf7c534b3a4e4603e69c886190674ba27",
+      "sha256": "557be4709754d775b80ee4fc08636910c378dfae6acc48cd41c51f2015fac113",
+      "bytes": 69282
+    },
+    {
+      "file": "cards/green-L3-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L3-03.png",
+      "source_sha256": "caf31fc988402be7c6950b2ee68118327e74100ee8841b1e667fd22b02b27c7b",
+      "sha256": "dc0afcbe5c060facc4ee556766d2d6d6f1e747b2772b6cf313c1da1fedf31597",
+      "bytes": 73566
+    },
+    {
+      "file": "cards/green-L3-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/green-L3-04.png",
+      "source_sha256": "d8ac89fed69a52c11a6cf0f78290cb2befee69146886496f0ea508104189762a",
+      "sha256": "7fe33bbe19f6f70edbae10360201ed367c1bb47d5758e02f73e608bfc209f628",
+      "bytes": 71824
+    },
+    {
+      "file": "cards/red-L1-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-01.png",
+      "source_sha256": "c0773f34420bcac723a7546c017ac7f4a2ec7896fe41231637c07e9a8d594268",
+      "sha256": "a42f36930100784bc690b2463c83be6c33549c1fc686b76471c315abd4940924",
+      "bytes": 58740
+    },
+    {
+      "file": "cards/red-L1-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-02.png",
+      "source_sha256": "74edb697f998dbd24c7675100d81ec0cb9c8f823b433ae1017cad1f6f9c9a159",
+      "sha256": "2b0d543f4b93725f72e3eacd97ae8ef95f441d4618b098f23a66c41a7c500711",
+      "bytes": 56958
+    },
+    {
+      "file": "cards/red-L1-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-03.png",
+      "source_sha256": "1ab0c998d02783cb88dc9da7b226ac512163e0f73d66de3df7898bbae2e6e63c",
+      "sha256": "52b196fb2aeb943a2e6d3fc74ca5b6f22f20194c60044aa9bcfe1d7737965052",
+      "bytes": 60050
+    },
+    {
+      "file": "cards/red-L1-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-04.png",
+      "source_sha256": "00172494e7b1d72490fb60ba3d507ac585f2a6b882d35aa0a2b6f368b5e886b8",
+      "sha256": "c68db83ad7216390c29c11d2cfabcf7342d65bd21ba3cbb69ad8c2543b72e242",
+      "bytes": 61270
+    },
+    {
+      "file": "cards/red-L1-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-05.png",
+      "source_sha256": "802351be1f54711b6ca81d56193c6b268e061567d0706f69cf5a74668ce36ab6",
+      "sha256": "60c3cb0d360e95fc8561b32929e85fafeb6153d4c915831fc94410340cbaf1d4",
+      "bytes": 67628
+    },
+    {
+      "file": "cards/red-L1-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-06.png",
+      "source_sha256": "bfc5175e1667161f61599cd558e3d2fec3c5c5be7226ac4d485367e6913a882b",
+      "sha256": "d8723cd2e712e39c9ed20474c36d46af520a89f730571a6489fc9bad2340c015",
+      "bytes": 71172
+    },
+    {
+      "file": "cards/red-L1-07.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-07.png",
+      "source_sha256": "3dbc694aa48ef3e5f39df3d33309354d7b27c64930e0c2ad311541030bf34bdc",
+      "sha256": "9166c6ff96ff2228a1caa73b92c973864749a87869a5e17fe0bb705e635d8555",
+      "bytes": 72052
+    },
+    {
+      "file": "cards/red-L1-08.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L1-08.png",
+      "source_sha256": "893a2eaa42a38de446a6f79866fa1a89c319e0c9afce09b55ce6e945b599e0e5",
+      "sha256": "e0a8a9dfdd9ab1513304d5bbb960e901487a4dc69baecaaf2192db265e8e1b48",
+      "bytes": 69430
+    },
+    {
+      "file": "cards/red-L2-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-01.png",
+      "source_sha256": "5d6052833699a2974b4d543bc102c98074af65d0fb607aa6b570b37bdadc8fab",
+      "sha256": "1d462979e98560aa675e27b1b5ee928d1d7d299e99aa6d55c017156a315fb679",
+      "bytes": 56248
+    },
+    {
+      "file": "cards/red-L2-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-02.png",
+      "source_sha256": "4501309589b1b43bb6b137174d54de5828ea6ca3ed5e8e1129f4c9fbb71dc1f5",
+      "sha256": "4c187455df0f7a278445fa9e81f23f11060611515e9c7e9eab8209ba950a349a",
+      "bytes": 58018
+    },
+    {
+      "file": "cards/red-L2-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-03.png",
+      "source_sha256": "0528281451e81e3a71f955688fda5645b8120d277ac8cc2892aeef94fe007e2c",
+      "sha256": "17c46c9b02dc75b92cc91f5d6134f527a7f660bddb5bb408016a7766af572b0d",
+      "bytes": 57852
+    },
+    {
+      "file": "cards/red-L2-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-04.png",
+      "source_sha256": "d64ef7383b7723cbdaab3a94154f1570c80d080ee7cfc978f65126a0568e55be",
+      "sha256": "088703475fcfe3df194f9481cbe13f392018f76551c432c2a5b447eabe9663db",
+      "bytes": 54782
+    },
+    {
+      "file": "cards/red-L2-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-05.png",
+      "source_sha256": "26b00f2582b36c0739f0f53551fc310db764f6f2ebcb24de9957819e4429dafd",
+      "sha256": "13d6a2de78ae87974b26a872cddafcde4165c3dac6ed141bbada6b13fcdb3696",
+      "bytes": 56604
+    },
+    {
+      "file": "cards/red-L2-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L2-06.png",
+      "source_sha256": "ddd190d77f8c935184e2bc7e5832f06eb17fe7039e8b00cea1277c7eef9015b6",
+      "sha256": "6c2eb8cad011f8549261ca376d8e37c4fac22b9362022069f008b210a882a548",
+      "bytes": 60364
+    },
+    {
+      "file": "cards/red-L3-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L3-01.png",
+      "source_sha256": "cfccb0bb5c654bea96402d4069b1b84c4281a0288242e1e4f716fbcfd80bf8d4",
+      "sha256": "99b9d6e13bfa4789c0851b0626514ffae4b78f269c062c6664c9775c9f6c8ccb",
+      "bytes": 72856
+    },
+    {
+      "file": "cards/red-L3-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L3-02.png",
+      "source_sha256": "f48d082d6ec5868424ca96ee1181c80869e93fcbaa70eb3220f662af762599cc",
+      "sha256": "eed347aa69efef8596cd80aa6bd077e6d427ecb4555c2c41ce415bcd600c32e0",
+      "bytes": 78582
+    },
+    {
+      "file": "cards/red-L3-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L3-03.png",
+      "source_sha256": "dff82223ca670ccf8183fc3fc197d9bbb718dda358e92a795a76788e3317edd0",
+      "sha256": "5a75f87b91e21c43cde3779098a25d8f036df494aaa5e48d06064ba945f63650",
+      "bytes": 75906
+    },
+    {
+      "file": "cards/red-L3-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/red-L3-04.png",
+      "source_sha256": "54222b34b6f51d1ce0df80d814aea1f6006c3a68c61975e38b9c8fdb9dafc7ee",
+      "sha256": "b6d3954472ed0fd307a6a9178d0c346d36978fe96001885f244b0968953446f0",
+      "bytes": 73514
+    },
+    {
+      "file": "cards/black-L1-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-01.png",
+      "source_sha256": "a04ed613ad4b91bad6f1f9d75ce8a513e19ea4657eeadbf69bc670b633af1b36",
+      "sha256": "d1d39c8c8930b42455b34d62ac18f799d940aa219075b652b91e1748f78095fc",
+      "bytes": 60600
+    },
+    {
+      "file": "cards/black-L1-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-02.png",
+      "source_sha256": "f972856865656e291ff135d2683384a1405059ddd550368c7786074bc69c6082",
+      "sha256": "1b741d00b3dd83cb5d0c4b1951fe8b25b82d8c97599e7b2230918ecc5d5420ce",
+      "bytes": 57596
+    },
+    {
+      "file": "cards/black-L1-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-03.png",
+      "source_sha256": "8fd33cbfbcf26858bb544783a66dd8a4040eb371a0a9a5c0a0e978c6e53bfe44",
+      "sha256": "cdf11e35d001425994a1bdf1b382704b5846c8b2737ddc39ced1ff746e5bc495",
+      "bytes": 55258
+    },
+    {
+      "file": "cards/black-L1-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-04.png",
+      "source_sha256": "b8120f416f92db2ba9b2b3bb2285adf626584748a515d7fc3ee454863c8ffb36",
+      "sha256": "5cd4d562a3a6792d3c8a269d67c18b86284e5a61cce02657605fa7bb1c7fd59c",
+      "bytes": 56124
+    },
+    {
+      "file": "cards/black-L1-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-05.png",
+      "source_sha256": "da95aec01acf95c748478b9ed38df987e2360ee194a5f2696bff5ca6074f887d",
+      "sha256": "02ddadcfa79a208ea1959ce596468de9cb0e82a6f274da311015cbc8207a149a",
+      "bytes": 60980
+    },
+    {
+      "file": "cards/black-L1-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-06.png",
+      "source_sha256": "ad6d2eabc8448df58153edf904e5a6862c876cbcd6b63843d8187687b56451f7",
+      "sha256": "c2a3da0627dd828751c4f2d43150290a52a1e0b4135b5ae10edc8571f4b91f74",
+      "bytes": 62340
+    },
+    {
+      "file": "cards/black-L1-07.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-07.png",
+      "source_sha256": "6b675187338a498802a02e32831af6d9bf6535ac8d8fcce3a4ba268fba68ded4",
+      "sha256": "8879b5b90e59ae1f9c84241009fa4642e8d4a2fbdc288dc1064837b6a629f3f1",
+      "bytes": 65568
+    },
+    {
+      "file": "cards/black-L1-08.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L1-08.png",
+      "source_sha256": "018bd7ed3b32185cd3ed20e4e5d2fcd80b50333f02690c1524b514a8c520098b",
+      "sha256": "0d3f54d669ebe2329538bae8c35ad9a23034c48c72211e69c41137fe79ee3236",
+      "bytes": 61484
+    },
+    {
+      "file": "cards/black-L2-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-01.png",
+      "source_sha256": "82f149ddc9b7775e3fc19357524cecb99c1d7103ffa9e5ae3da428880d8cb4f1",
+      "sha256": "de6e77019a5fa2803e43c89a25a97358c1c74a15bccf5d66dd5da54c64cc64a8",
+      "bytes": 52680
+    },
+    {
+      "file": "cards/black-L2-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-02.png",
+      "source_sha256": "e98382d01e3f16e967bfe317083dd7e90f732b1bb3e7e5e42ab01bfe57c94d53",
+      "sha256": "9088fedfa05dad641b47163977f95a84edee4ba803082468a6f02020af3d5929",
+      "bytes": 55304
+    },
+    {
+      "file": "cards/black-L2-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-03.png",
+      "source_sha256": "a4e53fabcd52dd618b7243d616cd5f5f2ee47d250e64d3c9d8c07bb2eedb7a72",
+      "sha256": "b882f8f9babd46e820e1975fc006f23b2458c5ccb6d13c78e39eed50e393f402",
+      "bytes": 59194
+    },
+    {
+      "file": "cards/black-L2-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-04.png",
+      "source_sha256": "dfee0fb9543eebcae227edd2d4c9506ea2ba2f1cae6394abb80f12d81977b651",
+      "sha256": "4aac516e3c2ed5dddb2d4ed8cf59c103cb527e3b8a0b690e2b7e00de55680429",
+      "bytes": 56250
+    },
+    {
+      "file": "cards/black-L2-05.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-05.png",
+      "source_sha256": "58ecbd817ce57fe888891cf2a1f4ed5a46a58f378998b6e8c054912a762ef728",
+      "sha256": "4af37089283ed0c6c37aa3d1234880f43d583643de419a0709e1986a0989ecd4",
+      "bytes": 57998
+    },
+    {
+      "file": "cards/black-L2-06.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L2-06.png",
+      "source_sha256": "cdb744df69c884c172cee4b9a212b5e355ac98342983fb4cf3fa9df49cfbd5d4",
+      "sha256": "8d4c2cb88d9a480f21273719327f9edd058de62d6fdee4c306cad88c4710e846",
+      "bytes": 57416
+    },
+    {
+      "file": "cards/black-L3-01.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L3-01.png",
+      "source_sha256": "fdc37a58930151cf7244d228048eae43610e320fa43b21967f8ec9337f716141",
+      "sha256": "ee05407358093a0260119e4dbe873738ec95337b29cbe709c731e526617493e7",
+      "bytes": 74288
+    },
+    {
+      "file": "cards/black-L3-02.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L3-02.png",
+      "source_sha256": "b3ba8199b032694862dcc72ec4358fa5c775d5659e444e8862a77699089d2a4f",
+      "sha256": "95727467440e04a4eed05308a4b97dd16f575de8672165b41e66b121654d7e34",
+      "bytes": 76536
+    },
+    {
+      "file": "cards/black-L3-03.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L3-03.png",
+      "source_sha256": "719234f12b4fbe2d91605a167abc0d71013f1bafcc558bdb6dc729617d5b909e",
+      "sha256": "779ea295a61d62b08a3080fa58421447159a0f69ca04d590ba4ea61c0f6e7d3e",
+      "bytes": 72860
+    },
+    {
+      "file": "cards/black-L3-04.webp",
+      "source": "https://anicolao.github.io/splendor/data/cards/black-L3-04.png",
+      "source_sha256": "160aa240f6d1a11e89447a56f2746e114d3e32b02bfc216dc2748456d95d1392",
+      "sha256": "8f5c2d8a6a9a8a923b42fa15a4981fdc5bcb3839bd8129af2200d20610b72fdd",
+      "bytes": 65270
+    },
+    {
+      "file": "gems/diamond.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/diamond.png",
+      "sha256": "fba48e1bb9dcd52ab0dc7514dee1326a808847f74f0e8172aace2971fb206747",
+      "bytes": 76947
+    },
+    {
+      "file": "gems/sapphire.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/sapphire.png",
+      "sha256": "0538c015bae4846581b8f7bafc14f621f56251ffb70023e11cc4190815ee5e82",
+      "bytes": 147569
+    },
+    {
+      "file": "gems/emerald.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/emerald.png",
+      "sha256": "f6330c85a63b544a414987acb2837e8ede4cc59a55465b4835f140b2a31d83ff",
+      "bytes": 178686
+    },
+    {
+      "file": "gems/ruby.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/ruby.png",
+      "sha256": "60194b8ca7615be555fe89e07426a38f286ad5a1e95cb0098c37fee7689597a5",
+      "bytes": 128992
+    },
+    {
+      "file": "gems/onyx.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/onyx.png",
+      "sha256": "f418b1c6737580fc1247a1adbace1533f1f83bfd2b088f015fb74760194d36ab",
+      "bytes": 61446
+    },
+    {
+      "file": "gems/gold.png",
+      "source": "https://github.com/kyle-ip/splendor/blob/main/public/assets/gems/gold.png",
+      "sha256": "935cc953dbbd2b028543af2ee3f5c1975e40347a5fee75b946822ec63bbb697b",
+      "bytes": 66594
+    },
+    {
+      "file": "nobles/noble-01.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble1.png",
+      "source_sha256": "3cb7e271c5d3febbe52c2835affea41c6efdf0c754b5d04dddb59c6f16f62ce0",
+      "sha256": "2998c0627c495d13968c0ad2214756de4274c42f3c909ce1b06a42e9662b11b8",
+      "bytes": 55134
+    },
+    {
+      "file": "nobles/noble-02.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble2.png",
+      "source_sha256": "0c59ffcf7b1762d040b3cdb277dbd2882099731a0a99bc551ca1216642084c1b",
+      "sha256": "a1d969c04f30a969b0215a299007204d390d994f17ab8bbd08432b17fcd12ba4",
+      "bytes": 50979
+    },
+    {
+      "file": "nobles/noble-03.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble3.png",
+      "source_sha256": "34493f9a3eff411e37f32bb1feb7251504f9e09bf9e4d151769f1a4334d3fbb0",
+      "sha256": "3a20f95859e5e8e95415f090a6f18fa0a8963fd9d30aba597248f82ad837ec8a",
+      "bytes": 53772
+    },
+    {
+      "file": "nobles/noble-04.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble4.png",
+      "source_sha256": "4ddef3f0908533db4e11813c64e60617fb0e5f7414fe9991449bb4b39fbdf829",
+      "sha256": "eb30c3285c45e29f40089e2d8ad42fca345db4ec8c6b6b10a6d7cf468db88cac",
+      "bytes": 49260
+    },
+    {
+      "file": "nobles/noble-05.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble5.png",
+      "source_sha256": "b10678d3138ed42a17497a80e854b7b35e1ec11a9efbc804c178dde120e68196",
+      "sha256": "5ca4b6d89a2f1bbb8eafe4ee678a990b2855b08adcf0282fd7a5727ae9621511",
+      "bytes": 54055
+    },
+    {
+      "file": "nobles/noble-06.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble6.png",
+      "source_sha256": "bad5d7b3af3176f115b26ded89b5fdfefa61e15ba46cf2b3fdecceeba716403a",
+      "sha256": "a7149e42a9dadb636765dc4960509432bc803f5917f00a0fed542a042b7914ef",
+      "bytes": 43285
+    },
+    {
+      "file": "nobles/noble-07.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble7.png",
+      "source_sha256": "249c52aa5d3fcce15786b5d0ba9c89054c7dfb67db059585e5fa8b8df6481c6e",
+      "sha256": "a8abbc55337196aca2fdaac1cd8e9b31177886ea7e790b8ad5f19cb143abff8a",
+      "bytes": 64110
+    },
+    {
+      "file": "nobles/noble-08.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble8.png",
+      "source_sha256": "55ee4b981c111f012c0e3d30aa249b90ea5d97bae331c46e712910a69ab1d72c",
+      "sha256": "e2c5191952a7601d380daface53152dbf083f6e4fa3e71531022b291177e2442",
+      "bytes": 52775
+    },
+    {
+      "file": "nobles/noble-09.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble9.png",
+      "source_sha256": "d52665fc8bf907b28d5d82b4da65d11785c4dc60f7066b9d5a7cc29ff6a71ad2",
+      "sha256": "9329290a2cc5d3afc2f1da0a0d261774b760c814978c4673e173b4b2441b90d8",
+      "bytes": 54206
+    },
+    {
+      "file": "nobles/noble-10.jpg",
+      "source": "https://github.com/kailaidescope/Splendor-Online/blob/main/client/src/main/resources/com/hexanome/fourteen/boards/images/nobles/noble10.png",
+      "source_sha256": "ac3b0806de30cac8780bd1b4255f4729c57112c17b18ce385b7f38cb295b38fc",
+      "sha256": "238aa9884841414479d4d0da7ce0b0c09734e5ce5ddb7914fd24227c0dc2c374",
+      "bytes": 57198
+    }
+  ]
+}

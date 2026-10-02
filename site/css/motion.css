@@ -1,0 +1,12 @@
+.bm-toggle{position:fixed;right:14px;bottom:12px;z-index:1600;border:1px solid #eacb7b66;border-radius:20px;background:#132d31e8;color:#ffe4a5;padding:7px 12px;font:500 12px/1.2 system-ui,sans-serif;cursor:pointer;box-shadow:0 3px 14px #0004;backdrop-filter:blur(10px)}
+.bm-ghost{pointer-events:none!important;user-select:none!important;contain:layout style;will-change:transform,opacity}
+.bm-confetti{position:fixed;width:7px;height:12px;border-radius:2px;pointer-events:none;z-index:1500;will-change:transform,opacity}
+html[data-motion=on] button:not(:disabled):not([aria-disabled=true]){transition:filter .14s,box-shadow .18s,background-color .18s}
+html[data-motion=on] button:not(:disabled):not([aria-disabled=true]):active{filter:brightness(1.22)}
+html[data-motion=on] .modal,html[data-motion=on] .w-modal,html[data-motion=on] .b-modal,html[data-motion=on] .pr-modal,html[data-motion=on] .cb-modal,html[data-motion=on] .cb-dialog{animation:bm-dialog-in .28s cubic-bezier(.2,.75,.25,1) both}
+html[data-motion=on] .gk-player.active,html[data-motion=on] .cb-player.active,html[data-motion=on] .w-player.active,html[data-motion=on] .player-card.active,html[data-motion=on] .b-player.active,html[data-motion=on] .pr-seat.active{box-shadow:0 0 0 1px #f6d78266,0 0 22px #eec46b14}
+@keyframes bm-dialog-in{from{transform:translateY(16px) scale(.96);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+@keyframes bm-thinking{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+html[data-motion=on] .w-hourglass{animation:bm-thinking 1.2s ease-in-out infinite}
+html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:600px){.bm-toggle{right:8px;bottom:8px;padding:6px 9px;font-size:11px}}
