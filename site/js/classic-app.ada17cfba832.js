@@ -15,6 +15,13 @@
   const KEY = 'boardgame-box-' + kind + '-v1';
   let game = null, saved = null, mode = 'ai', size = 9, screen = 'setup', selected = -1;
   let promotion = null, aiTimer = null, message = '';
+  let showEstimate = false, showTerritory = true;
+  const ANALYSIS_KEY = 'boardgame-box-go-analysis-preferences-v1';
+  if (kind === 'go') try {
+    const preferences = JSON.parse(localStorage.getItem(ANALYSIS_KEY));
+    showEstimate = preferences?.visible === true;
+    showTerritory = preferences?.territory !== false;
+  } catch { /* Use the default view if a preference is unavailable. */ }
   E = BoardMotion.watch({ game: kind, engine: E, state: () => game, methods: ['playGo', 'playXiangqi', 'playChess', 'undo', 'passGo', 'finishGo', 'markGoDead'] }) || E;
   E = Room.wrap(E, kind);
   const sideName = side => cfg.sides[side - 1] + (Room.active ? ' · ' + String(Room.snapshot?.seats[side - 1]?.name || '玩家').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) : '');
@@ -53,7 +60,7 @@
     return '轮到' + sideName(game.turn) + (kind === 'go' ? '落子' : '走棋') +
       ((kind === 'chess' && E.chessInCheck(game, game.turn)) || (kind === 'xiangqi' && E.xqInCheck(game, game.turn)) ? ' · 被将军' : '');
   }
-  function boardCells() {
+  function boardCells(estimate) {
     const legal = kind === 'go' ? [] : E.moves(game);
     const targets = new Set(legal.filter(move => move.from === selected).map(move => move.to));
     const aiTurn = game.mode === 'ai' && game.turn === 2 || Room.active && !Room.canAct;
@@ -63,10 +70,13 @@
       if (kind === 'go') {
         label += piece ? '，' + sideName(piece) : '，空位';
         const dead = game.dead.includes(index);
+        const owner = estimate && showTerritory && (!piece || dead) ? estimate.ownership[index] : 0;
+        if (owner) label += '，' + (owner === 1 ? '黑方' : '白方') + (estimate.final ? '数子地盘' : '估算地盘');
         return '<button class="cb-cell cb-go-cell' + (index === game.last ? ' last' : '') + (dead ? ' dead' : '') +
           '" data-cell="' + index + '" aria-label="' + label + '" title="' + label + '"' +
           ((game.phase === 'play' && (piece || aiTurn)) || game.phase === 'ended' || (game.phase === 'scoring' && (!piece || aiTurn)) ? ' disabled' : '') + '>' +
           (piece ? '<span class="cb-stone ' + (piece === 1 ? 'black' : 'white') + '"></span>' : '') +
+          (owner ? '<span class="cb-territory-mark ' + (owner === 1 ? 'black' : 'white') + '" aria-hidden="true"></span>' : '') +
           (game.size === 9 && [20, 24, 40, 56, 60].includes(index) && !piece ? '<i class="cb-star"></i>' : '') + '</button>';
       }
       label += piece ? '，' + (kind === 'chess' ? (piece === piece.toUpperCase() ? '白方' : '黑方') + '棋子' : pieceNames[piece]) : '，空位';
@@ -78,10 +88,31 @@
         (piece ? '<span class="cb-piece ' + color + '">' + glyph + '</span>' : '') + '</button>';
     }).join('');
   }
+  function analysisPanel(estimate) {
+    if (!estimate) return '';
+    const noStones = !estimate.blackStones && !estimate.whiteStones;
+    const lead = noStones && !estimate.final ? '尚未落子，形势未定' : estimate.lead === 0 ? '双方目数相同' :
+      (estimate.lead > 0 ? '黑方' : '白方') + (estimate.final ? '领先 ' : '估算领先 ') + Math.abs(estimate.lead) + ' 目';
+    const total = game.board.length;
+    const blackWidth = (estimate.blackStones + estimate.blackTerritory) / total * 100;
+    const whiteWidth = (estimate.whiteStones + estimate.whiteTerritory) / total * 100;
+    return '<section id="cb-go-analysis" class="cb-analysis" aria-label="围棋形势判断"><div class="cb-analysis-head"><h2>形势判断</h2><span>' +
+      (estimate.final ? '按当前死棋标记数子' : '实时估算') + '</span></div><strong class="cb-analysis-lead" role="status">' + lead + '</strong>' +
+      '<div class="cb-analysis-numbers"><div><span><i class="cb-analysis-dot black"></i>黑方</span><b data-estimate-black>' + estimate.black + '<small>目</small></b><p>棋子 ' + estimate.blackStones + ' · 地盘 ' + estimate.blackTerritory + '</p></div>' +
+      '<div><span><i class="cb-analysis-dot white"></i>白方</span><b data-estimate-white>' + estimate.white + '<small>目</small></b><p>棋子 ' + estimate.whiteStones + ' · 地盘 ' + estimate.whiteTerritory + '<br>含贴目 +' + estimate.komi + '</p></div></div>' +
+      '<div class="cb-analysis-bar" aria-hidden="true"><i class="black" style="width:' + blackWidth + '%"></i><i class="undecided" style="flex:1"></i><i class="white" style="width:' + whiteWidth + '%"></i></div>' +
+      '<p class="cb-analysis-pending">未定空点 <b data-estimate-undecided>' + estimate.undecided + '</b> · 提子不另加分</p>' +
+      (!estimate.final && (estimate.atariBlack || estimate.atariWhite) ? '<p class="cb-analysis-risk">打吃风险：黑 ' + estimate.atariBlack + ' 串 · 白 ' + estimate.atariWhite + ' 串</p>' : '') +
+      '<div class="cb-analysis-legend"><span><i class="cb-territory-key black"></i>黑方地盘</span><span><i class="cb-territory-key white"></i>白方地盘</span><span>空白：未定</span></div>' +
+      '<button class="cb-analysis-toggle" data-action="territory" aria-pressed="' + showTerritory + '">' + (showTerritory ? '隐藏地盘标记' : '显示地盘标记') + '</button>' +
+      '<details class="cb-analysis-help"><summary>怎么看判断结果？</summary><p>' + (estimate.final ? '已按双方标记的死棋计算中国式面积：盘面活子加所围空点，白方再加贴目。混合包围的空点不计入任何一方。' :
+        '根据当前围地和附近棋子势力粗略估算；棋子加预计地盘，白方计入贴目。未定空点尚未分配，复杂死活和劫争未自动判定，不能作为最终胜负。') + ' 提子在中国数子法中不另加分。落子、提子、悔棋后自动刷新。</p></details></section>';
+  }
   function renderGame() {
     const turns = game.history.length;
     const sizeClass = kind === 'go' ? 'go-size-' + game.size : kind;
-    const score = game.phase === 'scoring' || game.phase === 'ended' ? E.goScore(game) : null;
+    const score = kind === 'go' && (game.phase === 'scoring' || game.phase === 'ended') ? E.goScore(game) : null;
+    const estimate = kind === 'go' && showEstimate ? E.goEstimate(game) : null;
     shell('<main class="cb-game"><aside class="cb-side"><div class="cb-kicker">' + cfg.english + ' · CLASSIC</div><h1>' + cfg.name + '</h1><p>' + cfg.subtitle + '</p>' +
       '<div class="cb-status" role="status"><small>当前局面</small><strong>' + statusText() + '</strong><span>已走 ' + turns + ' 手</span></div>' +
       '<div class="cb-players">' + [1, 2].map(side => '<div class="cb-player ' + (!game.winner && game.turn === side ? 'active' : '') + '"><i class="' + (side === 1 ? 'first' : 'second') + '"></i><div><strong>' + sideName(side) + '</strong><small>' + (side === 1 ? '先手' : game.mode === 'ai' ? '电脑 · 简单' : '后手') + '</small></div></div>').join('') + '</div>' +
@@ -89,10 +120,12 @@
       (score ? '<div class="cb-score"><strong>当前数子</strong><span>黑 ' + score.black + ' · 白 ' + score.white + '（贴 ' + score.komi + '）</span></div>' : '') +
       '<div class="cb-controls"><button class="cb-primary" data-action="new">新开一局</button><button class="cb-secondary" data-action="undo"' + (!turns ? ' disabled' : '') + '>悔棋</button>' +
       (kind === 'go' && game.phase === 'play' ? '<button class="cb-secondary" data-action="pass">停一手</button>' : '') +
-      (kind === 'go' && game.phase === 'scoring' ? '<button class="cb-primary" data-action="finish">确认数子</button>' : '') + '</div>' +
+      (kind === 'go' && game.phase === 'scoring' ? '<button class="cb-primary" data-action="finish">确认数子</button>' : '') +
+      (kind === 'go' ? '<button class="cb-secondary' + (showEstimate ? ' cb-analysis-active' : '') + '" data-action="estimate" aria-pressed="' + showEstimate + '" aria-controls="cb-go-analysis">形势判断</button>' : '') + '</div>' +
+      analysisPanel(estimate) +
       '<div class="cb-help"><b>玩法提示</b><p>' + (kind === 'go' ? '点击交点落子。双方连续停一手后，点击双方认可的死棋整组标记，再确认数子。' : '先点自己的棋子，再点高亮的可走位置。') + '</p><p>' + cfg.note + '</p></div></aside>' +
       '<section class="cb-board-area"><div class="cb-board-scroll"><div class="cb-board-frame"><div class="cb-board ' + sizeClass + '" role="grid" aria-label="' + cfg.name + '棋盘" style="--cols:' + game.size + '">' +
-      boardCells() + (kind === 'xiangqi' ? '<svg class="cb-xq-lines" viewBox="0 0 900 1000" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="450" width="900" height="100" fill="#d3a66f"/><path d="M350 50 L550 250 M550 50 L350 250 M350 750 L550 950 M550 750 L350 950" fill="none" stroke="#704724" stroke-width="2"/><text x="250" y="515" text-anchor="middle">楚 河</text><text x="650" y="515" text-anchor="middle">汉 界</text></svg>' : '') + '</div></div></div>' +
+      boardCells(estimate) + (kind === 'xiangqi' ? '<svg class="cb-xq-lines" viewBox="0 0 900 1000" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="450" width="900" height="100" fill="#d3a66f"/><path d="M350 50 L550 250 M550 50 L350 250 M350 750 L550 950 M550 750 L350 950" fill="none" stroke="#704724" stroke-width="2"/><text x="250" y="515" text-anchor="middle">楚 河</text><text x="650" y="515" text-anchor="middle">汉 界</text></svg>' : '') + '</div></div></div>' +
       (message ? '<div class="cb-message" role="alert">' + message + '</div>' : '') + '<div class="cb-board-foot">' + (kind === 'go' ? '黑棋先行 · 白棋贴目 ' + game.komi + (game.size > 9 ? ' · 小屏可左右滑动棋盘' : '') : sideName(1) + '先行') + (Room.active ? ' · 房间自动保存' : ' · 本地自动保存') + '</div></section></main>' +
       (promotion ? '<div class="cb-overlay"><div class="cb-dialog"><h2>兵升变</h2><p>选择升变棋子</p><div class="cb-promotion">' + ['Q', 'R', 'B', 'N'].map(piece => '<button data-promotion="' + piece + '">' + chessGlyphs[piece] + '</button>').join('') + '</div><button class="cb-secondary" data-action="cancel-promotion">取消</button></div></div>' : ''));
   }
@@ -126,6 +159,12 @@
       if (button.dataset.size) { size = Number(button.dataset.size); render(); return; }
       if (button.dataset.action === 'start') { start(); return; }
       if (button.dataset.action === 'continue') { resume(); return; }
+      if (kind === 'go' && ['estimate', 'territory'].includes(button.dataset.action)) {
+        if (button.dataset.action === 'estimate') showEstimate = !showEstimate;
+        else showTerritory = !showTerritory;
+        try { localStorage.setItem(ANALYSIS_KEY, JSON.stringify({ visible: showEstimate, territory: showTerritory })); } catch { /* The view remains usable without storage. */ }
+        render(); return;
+      }
       if (button.dataset.action === 'new') { clearTimeout(aiTimer); mode = game.mode; size = game.size; screen = 'setup'; render(); return; }
       if (button.dataset.action === 'undo') {
         clearTimeout(aiTimer); const times = game.mode === 'ai' && game.turn === 1 && game.history.length > 1 ? 2 : 1;

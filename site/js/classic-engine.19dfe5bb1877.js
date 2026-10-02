@@ -124,6 +124,69 @@
     }
     return { black: points[0], white: points[1] + game.komi, komi: game.komi };
   }
+  function goEstimate(game) {
+    if (game.kind !== 'go' || ![9, 13, 19].includes(game.size)) throw Error('形势判断仅适用于围棋');
+    const final = game.phase !== 'play';
+    const dead = new Set(final ? game.dead : []);
+    const board = game.board.map((stone, index) => dead.has(index) ? 0 : stone);
+    const neighbors = board.map((_stone, index) => goNeighbors(index, game.size));
+    const ownership = Array(board.length).fill(0), stones = [0, 0], territory = [0, 0], atari = [0, 0];
+    const visitedGroups = new Set();
+    for (let index = 0; index < board.length; index++) {
+      const color = board[index];
+      if (!color) continue;
+      stones[color - 1]++;
+      if (visitedGroups.has(index)) continue;
+      const group = goGroup(board, index, game.size);
+      group.stones.forEach(stone => visitedGroups.add(stone));
+      if (group.liberties.size === 1) atari[color - 1]++;
+    }
+    // Damped influence estimates nearby control without awarding the entire
+    // open board to the first stone. Contested/weak influence stays undecided.
+    let influence = Float64Array.from(board, stone => stone === 1 ? 1 : stone === 2 ? -1 : 0);
+    let next = new Float64Array(board.length);
+    if (!final) for (let iteration = 0; iteration < 96; iteration++) {
+      let delta = 0;
+      for (let index = 0; index < board.length; index++) {
+        if (board[index]) { next[index] = influence[index]; continue; }
+        let total = 0;
+        for (const neighbor of neighbors[index]) total += influence[neighbor];
+        next[index] = total / (neighbors[index].length + .2);
+        delta = Math.max(delta, Math.abs(next[index] - influence[index]));
+      }
+      [influence, next] = [next, influence];
+      if (delta < .0001) break;
+    }
+    const visited = new Set();
+    for (let index = 0; index < board.length; index++) {
+      if (board[index] || visited.has(index)) continue;
+      const region = [index], borders = new Set(), owners = new Set(), edges = new Set();
+      visited.add(index);
+      for (let p = 0; p < region.length; p++) {
+        const point = region[p], row = Math.floor(point / game.size), col = point % game.size;
+        if (row === 0) edges.add('top'); if (row === game.size - 1) edges.add('bottom');
+        if (col === 0) edges.add('left'); if (col === game.size - 1) edges.add('right');
+        for (const neighbor of neighbors[point]) {
+          if (board[neighbor]) { borders.add(neighbor); owners.add(board[neighbor]); }
+          else if (!visited.has(neighbor)) { visited.add(neighbor); region.push(neighbor); }
+        }
+      }
+      // Compact enclosures also count in the middle game; large open regions
+      // use influence instead. In scoring, use the existing exact area rules.
+      const enclosed = owners.size === 1 && (final || !edges.size ||
+        edges.size < 4 && borders.size >= 2 && region.length <= borders.size ** 2 / 4);
+      const owner = enclosed ? [...owners][0] : 0;
+      for (const point of region) {
+        ownership[point] = owner || (!final && Math.abs(influence[point]) >= .6 ? influence[point] > 0 ? 1 : 2 : 0);
+        if (ownership[point]) territory[ownership[point] - 1]++;
+      }
+    }
+    const black = stones[0] + territory[0], white = stones[1] + territory[1] + game.komi;
+    return { black, white, komi: game.komi, lead: black - white, ownership,
+      blackStones: stones[0], whiteStones: stones[1], blackTerritory: territory[0], whiteTerritory: territory[1],
+      undecided: board.length - stones[0] - stones[1] - territory[0] - territory[1],
+      atariBlack: atari[0], atariWhite: atari[1], final };
+  }
   function finishGo(game) {
     if (game.phase !== 'scoring') throw Error('双方连续停一手后才能计分');
     remember(game); game.score = goScore(game); game.phase = 'ended';
@@ -376,6 +439,6 @@
     ranked.sort((a, b) => b.score - a.score);
     return ranked[0].move;
   }
-  root.ClassicEngine = { newGame, validSave, undo, tryGo, playGo, passGo, markGoDead, goScore, finishGo,
+  root.ClassicEngine = { newGame, validSave, undo, tryGo, playGo, passGo, markGoDead, goScore, goEstimate, finishGo,
     chessMoves, playChess, chessInCheck, xiangqiMoves, playXiangqi, xqInCheck, moves, chooseAI };
 })(typeof window !== 'undefined' ? window : globalThis);

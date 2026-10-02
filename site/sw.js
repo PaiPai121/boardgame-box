@@ -1,5 +1,5 @@
 const PREFIX = 'boardgame-box-pages:' + self.registration.scope + ':';
-const CACHE = PREFIX + "0.9.0-preview.2-ca1c4e1a8a02";
+const CACHE = PREFIX + "0.9.0-preview.3-84d665f36882";
 const FILES = [
   "./index.html",
   "./splendor.html",
@@ -15,7 +15,7 @@ const FILES = [
   "./data/base-splendor.1dd160cdb65b.js",
   "./data/puerto-rico.b68ef5d1bb05.js",
   "./css/base-splendor.1ff66d4b718d.css",
-  "./css/classic.5a0096098f91.css",
+  "./css/classic.b8bb7a5cb553.css",
   "./css/game-v2.f4d48bd28881.css",
   "./css/gomoku.23066d66bef6.css",
   "./css/hub.db4ab13f49b8.css",
@@ -27,8 +27,8 @@ const FILES = [
   "./js/app.9f9d67dd45d3.js",
   "./js/base-splendor-app.061d2b440f6e.js",
   "./js/base-splendor-engine.f1d6dd031df6.js",
-  "./js/classic-app.e7e348a57fd3.js",
-  "./js/classic-engine.5252b48ef5c2.js",
+  "./js/classic-app.ada17cfba832.js",
+  "./js/classic-engine.19dfe5bb1877.js",
   "./js/engine.d5989c890193.js",
   "./js/gomoku-app.ce5d6e030678.js",
   "./js/gomoku-engine.1132f995e02f.js",
@@ -37,7 +37,7 @@ const FILES = [
   "./js/puerto-app.a94802aa78de.js",
   "./js/puerto-engine.8b017ce5c9f0.js",
   "./js/pwa.4d9f9209f378.js",
-  "./js/site-config.a4c833357a69.js",
+  "./js/site-config.4f4763512f60.js",
   "./js/wonders-app.c631a0611531.js",
   "./js/wonders-data.a652580cdada.js",
   "./js/wonders-engine.256e3cbaac95.js",
