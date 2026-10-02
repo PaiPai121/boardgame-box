@@ -133,6 +133,11 @@
     if (effect.discardBuild) parts.push(badge('<i class="w-mini-card"></i><b>↺ 0</b>', '从弃牌堆中免费建造一张建筑。'));
     return '<div class="w-effects">' + parts.join('') + '</div>';
   }
+  function chainIcon(card) {
+    const symbol = D.CHAIN_SYMBOLS[card.key];
+    return symbol ? '<img class="w-chain-icon" data-chain-symbol="' + symbol.id +
+      '" src="assets/wonders/icons/chains/' + symbol.id + '.svg" alt="' + esc(symbol.name) + '连锁标识">' : '';
+  }
   function chainInfo(item) {
     const previous = E.chainKeys(item).map(key => BY_KEY.get(key));
     const next = [...BY_KEY.values()].filter(card => E.chainKeys(card).includes(item.key));
@@ -140,8 +145,12 @@
     const unlocked = previous.some(isBuilt);
     if (!previous.length && !next.length) return '<div class="w-chain w-no-chain">无连锁关系</div>';
     return '<div class="w-chain' + (unlocked ? ' unlocked' : '') + '">' +
-      previous.map(card => '<div' + helpAttr('已建造《' + card.name + '》时，《' + item.name + '》可以免费建造；多个前置满足任意一个即可。也可选择普通资源建造。') + '><span>前置建筑</span><b>' + esc(card.name) + '</b><em>' + (isBuilt(card) ? '已建 · 连锁免费' : '未建') + '</em></div>').join('') +
-      (next.length ? '<div' + helpAttr('建成《' + item.name + '》后，抽到以下建筑时可免费连锁建造：' + next.map(card => card.name).join('、')) + '><span>解锁建筑</span><b>' + next.map(card => esc(card.name) + '（时代' + card.age + '）').join('、') + '</b></div>' : '') + '</div>';
+      previous.map(card => '<div class="w-chain-row"' + helpAttr('连锁标识：' + D.CHAIN_SYMBOLS[item.key].name + '。已建造《' + card.name + '》时，《' + item.name + '》可以免费建造；多个前置满足任意一个即可。也可选择普通资源建造。') +
+        '><span class="w-chain-label">前置建筑</span><span class="w-chain-chip' + (isBuilt(card) ? ' built' : '') + '">' + chainIcon(item) +
+        '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><em>' + (isBuilt(card) ? '已建 · 连锁免费' : '未建') + '</em></span></span></div>').join('') +
+      (next.length ? '<div class="w-chain-row"><span class="w-chain-label">解锁建筑</span><div class="w-chain-options">' +
+        next.map(card => '<span class="w-chain-chip"' + helpAttr('连锁标识：' + D.CHAIN_SYMBOLS[card.key].name + '。建成《' + item.name + '》后，抽到《' + card.name + '》（时代' + card.age + '）时可连锁免费建造。标识用于匹配建筑，不是资源或科技奖励。') + '>' +
+          chainIcon(card) + '<span class="w-chain-identity"><b>' + esc(card.name) + '</b><span class="w-chain-age">（时代' + card.age + '）</span></span></span>').join('') + '</div></div>' : '') + '</div>';
   }
   function effectText(effect) {
     const parts = [];
@@ -340,7 +349,7 @@
       '<div><h3>牌与计分</h3>' + colors +
       '<div class="w-legend-item"><span class="w-legend-glyph">' + ['compass', 'gear', 'tablet'].map(icon).join('') + '</span><span><b>科技</b>：罗盘、齿轮、泥板各自数量平方计分；每套三种再加 7 分。任意科技可任选一种。</span></div>' +
       '<div class="w-legend-item"><span class="w-legend-glyph">☼/☾</span><span><b>奇迹面</b>：白昼 A / 夜晚 B；阶段按顺序建造。</span></div>' +
-      '<div class="w-legend-item"><span class="w-legend-glyph">→</span><span><b>连锁</b>：已建对应前置建筑时，可免费建造该牌。</span></div></div></div>' +
+      '<div class="w-legend-item">' + chainIcon(BY_KEY.get('aqueduct')) + '<span><b>连锁标识</b>：相同图标连接前置与后续建筑。例如水滴连接浴场与高架水渠；已建前置建筑时可免费建造后续牌。图标旁显示中文名称与时代。</span></div></div></div>' +
       '<p class="w-legend-note">卡图和奇迹版图是印刷图片，悬停整张图会显示该项解释。本预览的数据与图片可能不完全一致，请以图片下方的中文费用、效果为准。</p>' +
       '<div class="w-modal-actions"><button class="w-primary" data-action="close-symbols">知道了</button></div></section></div>';
   }
@@ -434,7 +443,17 @@
   document.addEventListener('focusout', event => {
     if (!tooltipPinned && tooltipAnchor?.contains(event.target)) hideTooltip();
   });
-  document.addEventListener('scroll', hideTooltip, true);
+  document.addEventListener('scroll', () => {
+    // Focusing a chain chip can scroll it into view. Keep keyboard help visible
+    // and positioned beside its anchor after that scroll completes.
+    if (!tooltipPinned && tooltipAnchor?.contains(document.activeElement)) {
+      const rect = tooltipAnchor.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth) {
+        showTooltip(tooltipAnchor); return;
+      }
+    }
+    hideTooltip();
+  }, true);
   window.addEventListener('resize', hideTooltip);
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;

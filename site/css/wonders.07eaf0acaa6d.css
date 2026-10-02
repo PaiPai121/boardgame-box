@@ -42,5 +42,18 @@
 @media(max-width:760px){.w-legend-grid{grid-template-columns:1fr;gap:3px}.w-symbols-modal{max-height:88vh}.w-symbols-modal h3{margin-top:12px}}
 @media(max-width:420px){.w-game-brand{display:none}}
 
+.w-chain .w-chain-row{align-items:center;gap:5px 7px;margin:4px 0}
+.w-chain .w-chain-label{font-size:10px;white-space:nowrap}
+.w-chain .w-chain-options{display:flex;flex-wrap:wrap;gap:5px;flex:1 1 110px;min-width:0}
+.w-chain .w-chain-chip{display:inline-flex;align-items:center;gap:6px;max-width:100%;min-width:0;min-height:34px;padding:3px 6px;border:1px solid #927f4d30;border-radius:7px;background:#fff9ea85;color:#3e534b}
+.w-chain .w-chain-row>.w-chain-chip{flex:1 1 95px}
+.w-chain .w-chain-chip.built{border-color:#478b5e70;background:#e5f3df}
+.w-chain-icon{display:block;width:28px;height:28px;flex:none;object-fit:contain}
+.w-chain .w-chain-identity{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px;min-width:0;flex:1 1 auto}
+.w-chain .w-chain-identity b{overflow-wrap:anywhere}
+.w-chain .w-chain-age{font-size:10px;color:#727360}
+.w-chain-chip:focus-visible{outline:2px solid #638e77;outline-offset:2px}
+.w-symbols-modal .w-chain-icon{width:30px;height:30px}
+
 /* Standalone artwork icons remain readable on desktop and touch screens. */
 .w-icon{display:inline-block;width:25px;height:25px;object-fit:contain;vertical-align:middle;flex:none}.w-resource,.w-coin{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:transparent!important;box-shadow:none!important}.w-player-resources .w-icon{width:21px;height:21px}.w-effects{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0 4px}.w-effect-badge{display:inline-flex;align-items:center;gap:3px;padding:4px 6px;background:#ffffff6e;border:1px solid #77634130;border-radius:7px;color:#273f3b;min-height:33px;font-size:12px}.w-effect-badge i{font-style:normal}.w-mini-card{width:14px;height:20px;border-radius:3px;border:1px solid #685f47;background:#bbaa8b;display:inline-block}.w-mini-card.multicolor{background:linear-gradient(100deg,#916745,#b1b8af,#9451a7)}.w-chain{border-top:1px solid #927f4d35;margin-top:9px;padding:7px 0;font-size:11px;line-height:1.6;color:#3e534b;min-height:38px}.w-chain>div{display:flex;flex-wrap:wrap;gap:3px 6px;align-items:baseline}.w-chain span{color:#6b705b;flex:none}.w-chain b{font-weight:700}.w-chain em{font-size:10px;font-style:normal;color:#677461}.w-chain.unlocked{color:#22613e;background:#478b5e17;border-radius:5px;padding:7px}.w-chain.unlocked em{color:#227744}.w-no-chain{color:#797c6d}.w-action.paidBuild{background:#fff6df;border:1px solid #bda266}.w-card-content>p{min-height:32px}.w-stage .w-effects{margin:5px 0}.w-stage .w-effect-badge{padding:2px 4px}.w-legend-item .w-icon{width:28px;height:28px}

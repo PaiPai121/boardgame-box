@@ -3,6 +3,22 @@
   const R = { W: '木材', S: '石材', C: '黏土', O: '矿石', G: '玻璃', P: '纸莎草', L: '织物' };
   const TYPES = { brown: '原材料', gray: '工艺品', blue: '民用', red: '军事', green: '科技', yellow: '商业', purple: '行会' };
   const COLORS = { brown: '#9d613f', gray: '#859095', blue: '#547ca9', red: '#a84e49', green: '#5c9b76', yellow: '#c29b4c', purple: '#866da7' };
+  // Chain icons printed on the publisher's second-edition chain sheet.
+  // The destination building selects the symbol shared by both ends of a link.
+  const CHAIN_SYMBOLS = Object.freeze({
+    statue: { id: 'hammer', name: '锤凿' }, aqueduct: { id: 'waterdrop', name: '水滴' },
+    pantheon: { id: 'star', name: '星星' }, gardens: { id: 'mask', name: '面具' },
+    caravan: { id: 'camel', name: '骆驼' }, lighthouse: { id: 'lighthouse', name: '灯塔' },
+    forum: { id: 'gate', name: '城门' }, haven: { id: 'barrel', name: '木桶' },
+    stables: { id: 'horseshoe', name: '马蹄铁' }, dispensary: { id: 'mortar', name: '研钵' },
+    arena: { id: 'lightning', name: '闪电' }, lodge: { id: 'torch', name: '火炬' },
+    archery: { id: 'target', name: '靶心' }, laboratory: { id: 'lamp', name: '油灯' },
+    siege: { id: 'saw', name: '锯子' }, observatory: { id: 'planet', name: '星球' },
+    courthouse: { id: 'scales', name: '天平' }, library: { id: 'book', name: '书本' },
+    senate: { id: 'column', name: '立柱' }, university: { id: 'scroll', name: '卷轴' },
+    academy: { id: 'lyre', name: '里拉琴' }, study: { id: 'feather', name: '羽毛' },
+    fort: { id: 'battlement', name: '城垛' }, circus: { id: 'helmet', name: '头盔' }
+  });
   const templates = {};
   function card(key, name, type, cost, effect, chain) {
     templates[key] = { key, name, type, cost: cost || '', effect, chain: chain || null };
@@ -148,5 +164,5 @@
     }
     return result;
   });
-  root.WondersData = Object.freeze({ R, TYPES, COLORS, WONDERS, ages, allCards: ages.flat() });
+  root.WondersData = Object.freeze({ R, TYPES, COLORS, CHAIN_SYMBOLS, WONDERS, ages, allCards: ages.flat() });
 })(typeof window === 'undefined' ? globalThis : window);

@@ -1,0 +1,343 @@
+{
+  "source": "https://cdn.svc.asmodee.net/production-rprod/storage/downloads/games/7wonders/en/sev-en02-chain-list-1598888877Na4yW.pdf",
+  "source_sha256": "25e09e8c6f9638fd06f72dd1a20df5110aa7308c26e6280a1dc10bbdf9d06ad8",
+  "extraction": "Original PDF vector paths inside each printed chain circle",
+  "files": [
+    {
+      "id": "hammer",
+      "file": "icons/chains/hammer.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        81.072,
+        574.255,
+        101.863
+      ],
+      "vector_paths": 14,
+      "sha256": "fe607dac21fb310c1c15af43f8edfca432f7b620dfa5297906d1e88d2d57ba18",
+      "bytes": 4945
+    },
+    {
+      "id": "waterdrop",
+      "file": "icons/chains/waterdrop.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        125.932,
+        574.255,
+        146.722
+      ],
+      "vector_paths": 4,
+      "sha256": "2deef65c0e66dc90fe6b307849adb4e89fd481762a9dbe32ed28fae6312c9bdb",
+      "bytes": 3636
+    },
+    {
+      "id": "star",
+      "file": "icons/chains/star.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        614.378,
+        171.365,
+        635.165,
+        192.152
+      ],
+      "vector_paths": 6,
+      "sha256": "7ea7bf0a620b4da123bab08a5f35c86e13e4033c67889dd0c486751cf527f4c2",
+      "bytes": 2064
+    },
+    {
+      "id": "mask",
+      "file": "icons/chains/mask.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        614.378,
+        216.221,
+        635.165,
+        237.011
+      ],
+      "vector_paths": 4,
+      "sha256": "9b8e49aa5e4d44da7abb4d788a26723a6c9853003ae5808b88fa16e588d02730",
+      "bytes": 5930
+    },
+    {
+      "id": "camel",
+      "file": "icons/chains/camel.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        257.76,
+        574.255,
+        278.547
+      ],
+      "vector_paths": 4,
+      "sha256": "15ca9baeea609aa76420eb904fc343e676f8b108a70376405c8880423cf8cba1",
+      "bytes": 15125
+    },
+    {
+      "id": "lighthouse",
+      "file": "icons/chains/lighthouse.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.866,
+        257.76,
+        694.657,
+        278.547
+      ],
+      "vector_paths": 15,
+      "sha256": "0dc6d3d099066fe5f6b1406fd35160dd1e3f120459464753b0b85c7b60708e18",
+      "bytes": 5047
+    },
+    {
+      "id": "gate",
+      "file": "icons/chains/gate.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.495,
+        302.619,
+        574.286,
+        323.406
+      ],
+      "vector_paths": 19,
+      "sha256": "7519971f7280ac78b53f7ba71107bde7a3484895c95b648c0d768fa5a06b8cdd",
+      "bytes": 5470
+    },
+    {
+      "id": "barrel",
+      "file": "icons/chains/barrel.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        301.889,
+        694.555,
+        322.679
+      ],
+      "vector_paths": 9,
+      "sha256": "b27a0c958de17d1759ae27c97fed6c5f4602b0a29bc27f5bb093e68681132172",
+      "bytes": 2589
+    },
+    {
+      "id": "lightning",
+      "file": "icons/chains/lightning.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        364.908,
+        694.555,
+        385.699
+      ],
+      "vector_paths": 4,
+      "sha256": "637d740ea60321b44221a4b765deae68a3ab9f7499da26da192d2911de9425bc",
+      "bytes": 2143
+    },
+    {
+      "id": "horseshoe",
+      "file": "icons/chains/horseshoe.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        367.111,
+        574.255,
+        387.902
+      ],
+      "vector_paths": 4,
+      "sha256": "c5cc2be3df24611f87ca08800c10426a5b60fd1b5f7afe6cc96f9204efa2bfe2",
+      "bytes": 4960
+    },
+    {
+      "id": "mortar",
+      "file": "icons/chains/mortar.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        390.877,
+        574.255,
+        411.668
+      ],
+      "vector_paths": 7,
+      "sha256": "bfce281cda70f902e42678a590694c35528a54017f66af446a1979d2e4b93195",
+      "bytes": 1971
+    },
+    {
+      "id": "torch",
+      "file": "icons/chains/torch.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.866,
+        390.877,
+        694.657,
+        411.668
+      ],
+      "vector_paths": 9,
+      "sha256": "7172e4733870408adb639700cbf2e315293a2c82066760426d316957ea8847ed",
+      "bytes": 2475
+    },
+    {
+      "id": "saw",
+      "file": "icons/chains/saw.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.866,
+        453.854,
+        694.657,
+        474.644
+      ],
+      "vector_paths": 4,
+      "sha256": "46523b2722781aa52b3268e57e6c7451d305880c51f44f0feef3de9f87bbaf75",
+      "bytes": 1895
+    },
+    {
+      "id": "target",
+      "file": "icons/chains/target.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        458.795,
+        574.255,
+        479.586
+      ],
+      "vector_paths": 13,
+      "sha256": "49f8aa9f92498d52abe488540a3dd9df5c2a888ec5c4d458505eb1720bdeda3a",
+      "bytes": 3552
+    },
+    {
+      "id": "lamp",
+      "file": "icons/chains/lamp.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        481.58,
+        574.255,
+        502.367
+      ],
+      "vector_paths": 7,
+      "sha256": "f21eca7e21be11c47ef299a8c6ea1c0695a8d0dd572fbac25221799db5ae1b64",
+      "bytes": 9819
+    },
+    {
+      "id": "planet",
+      "file": "icons/chains/planet.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        481.658,
+        694.555,
+        502.445
+      ],
+      "vector_paths": 7,
+      "sha256": "4df7e02ea9029e2424c0c8226fdc0fd0005ac6291675e3aa03bdf2b41d1c00ba",
+      "bytes": 2547
+    },
+    {
+      "id": "column",
+      "file": "icons/chains/column.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        542.83,
+        694.555,
+        563.617
+      ],
+      "vector_paths": 4,
+      "sha256": "5644e3ff0d065c541bab107162aed05744169054d09e4652bc76187f415243b9",
+      "bytes": 2946
+    },
+    {
+      "id": "scales",
+      "file": "icons/chains/scales.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        546.315,
+        574.255,
+        567.105
+      ],
+      "vector_paths": 18,
+      "sha256": "601de2bee2f3366af3cb0a1430af20a10a50b5933d89c269e488df6be0947c93",
+      "bytes": 6090
+    },
+    {
+      "id": "book",
+      "file": "icons/chains/book.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        553.468,
+        569.065,
+        574.255,
+        589.855
+      ],
+      "vector_paths": 15,
+      "sha256": "ca9fd63a78552d19f519bb704204aead93a4be0edded835a6c61fac6dce9386e",
+      "bytes": 7454
+    },
+    {
+      "id": "scroll",
+      "file": "icons/chains/scroll.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.866,
+        569.065,
+        694.657,
+        589.855
+      ],
+      "vector_paths": 16,
+      "sha256": "140042cb7892e6d57d4e06baccd3c119f524fb5aae960f6e432aca257aa49616",
+      "bytes": 4972
+    },
+    {
+      "id": "lyre",
+      "file": "icons/chains/lyre.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        631.447,
+        694.555,
+        652.234
+      ],
+      "vector_paths": 7,
+      "sha256": "d7fc051ae6b21ec415ce28fe358e321e1c987f438d3d5cf45e171b4b80b8f9f5",
+      "bytes": 1952
+    },
+    {
+      "id": "feather",
+      "file": "icons/chains/feather.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.972,
+        657.447,
+        694.763,
+        678.238
+      ],
+      "vector_paths": 4,
+      "sha256": "163df0d4fc45e807370b1025ca410fdb4600edc2c842684ba9f1a64eafa59273",
+      "bytes": 4167
+    },
+    {
+      "id": "battlement",
+      "file": "icons/chains/battlement.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.972,
+        701.861,
+        694.763,
+        722.652
+      ],
+      "vector_paths": 8,
+      "sha256": "93a9c8a1bd9b14f5e43bceb8b9327701d207ac551542354a123b35bc927fb7e0",
+      "bytes": 2994
+    },
+    {
+      "id": "helmet",
+      "file": "icons/chains/helmet.svg",
+      "page": 2,
+      "pdf_rectangle_points": [
+        673.765,
+        744.998,
+        694.555,
+        765.789
+      ],
+      "vector_paths": 5,
+      "sha256": "fa681f490a9a30a2c4dd691ec44d9e0cbef883f73bc198c9e74e870841699372",
+      "bytes": 3376
+    }
+  ]
+}
