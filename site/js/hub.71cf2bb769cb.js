@@ -26,6 +26,12 @@
       href: 'gomoku.html', color: 'amber', saveKey: GOMOKU_SAVE
     },
     {
+      id: 'yinsh', name: '圈套棋', english: 'YINSH',
+      genre: '经典对弈', players: '1–2 人', duration: '约 30 分钟',
+      summary: '移环留子，跳跃翻色。连成五子后收回自己的环，先收回三个环获胜。',
+      href: 'yinsh.html', color: 'jade', saveKey: 'boardgame-box-yinsh-v1'
+    },
+    {
       id: 'wonders', name: '七大奇迹', english: 'SEVEN WONDERS',
       genre: '卡牌策略', players: '3–7 人', duration: '30–45 分钟',
       summary: '三个时代里发展城市，与邻座贸易、竞逐军力，建造属于你的世界奇迹。',
@@ -86,6 +92,11 @@
         if (value.version !== 1 || value.kind !== 'puerto-rico' || !Array.isArray(value.players) || !Number.isInteger(value.current)) return null;
         return { label: value.phase === 'gameover' ? '已完成的对局' : '第 ' + value.round + ' 轮 · ' + String(value.players[value.current]?.name || '玩家') + ' 行动', finished: value.phase === 'gameover' };
       }
+      if (game.id === 'yinsh') {
+        if (value.version !== 1 || value.kind !== 'yinsh' || !Array.isArray(value.board) || value.board.length !== 85) return null;
+        return { label: value.winner ? '已完成的对局' : value.phase === 'place' ? '开局放环 · 已放 ' + value.placed.reduce((a, b) => a + b, 0) + '/10 环' :
+          '白方 ' + value.scores[0] + ' : ' + value.scores[1] + ' 黑方 · ' + (value.turn === 1 ? '白方' : '黑方') + '行动', finished: Boolean(value.winner) };
+      }
       if (['go', 'xiangqi', 'chess'].includes(game.id)) {
         const length = game.id === 'go' ? value.size * value.size : game.id === 'xiangqi' ? 90 : 64;
         if (value.version !== 1 || value.kind !== game.id || !Array.isArray(value.board) || value.board.length !== length) return null;
@@ -102,6 +113,7 @@
     } catch { return null; }
   }
   function cover(id, hero) {
+    if (id === 'yinsh') return '<div class="cover cover-yinsh" aria-hidden="true"><span class="yn-cover-grid"></span><i class="yn-cover-ring one"></i><i class="yn-cover-ring two"></i><i class="yn-cover-ring three"></i><i class="yn-cover-marker a"></i><i class="yn-cover-marker b"></i><i class="yn-cover-marker c"></i><span class="yn-cover-label">Y I N S H</span></div>';
     if (id === 'puerto-rico') return '<div class="cover cover-puerto' + (hero ? ' hero-cover' : '') + '" aria-hidden="true"><img class="pr-cover-board" src="assets/puerto-rico/boards/island.png" alt=""><img class="pr-cover-ship" src="assets/puerto-rico/decoration/sailing_ship.png" alt=""><span class="pr-cover-label">PUERTO RICO</span></div>';
     if (id === 'splendor-classic') return '<div class="cover cover-splendor cover-base' + (hero ? ' hero-cover' : '') + '" aria-hidden="true">' +
       '<span class="cover-orbit orbit-a"></span><span class="cover-orbit orbit-b"></span>' +
@@ -192,7 +204,7 @@
   function renderLibrary() {
     const visible = filter === '全部' ? catalog : catalog.filter(game => game.genre === filter);
     return '<div class="page-content"><section class="library-intro"><div class="eyebrow">YOUR GAME SHELF</div>' +
-      '<h1>游戏库</h1><p>八款游戏，多种节奏。找到适合这一局的玩法。</p></section>' +
+      '<h1>游戏库</h1><p>' + catalog.length + ' 款游戏，多种节奏。找到适合这一局的玩法。</p></section>' +
       '<div class="library-tools"><div class="filter-list" aria-label="筛选游戏">' +
       ['全部', '卡牌策略', '经营策略', '经典对弈'].map(name => '<button data-filter="' + esc(name) + '" class="' +
         (filter === name ? 'active' : '') + '">' + esc(name) + '</button>').join('') +

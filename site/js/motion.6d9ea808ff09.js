@@ -64,13 +64,13 @@
       if (found) map.set('player:' + node.dataset.motionPlayer, found);
     });
     document.querySelectorAll('[data-cell]').forEach(node => {
-      const piece = node.querySelector('.cb-piece,.cb-stone,.gk-stone');
+      const piece = node.querySelector('.cb-piece,.cb-stone,.gk-stone,.yn-piece');
       if (piece) { const found = item(piece); if (found) map.set('piece:' + node.dataset.cell, found); }
     });
     return map;
   }
   function target(key) {
-    if (key.startsWith('piece:')) return document.querySelector('[data-cell="' + key.slice(6) + '"] .cb-piece,[data-cell="' + key.slice(6) + '"] .cb-stone,[data-cell="' + key.slice(6) + '"] .gk-stone');
+    if (key.startsWith('piece:')) return document.querySelector('[data-cell="' + key.slice(6) + '"] .cb-piece,[data-cell="' + key.slice(6) + '"] .cb-stone,[data-cell="' + key.slice(6) + '"] .gk-stone,[data-cell="' + key.slice(6) + '"] .yn-piece');
     if (key.startsWith('player:')) return document.querySelector('[data-motion-player="' + key.slice(7) + '"]');
     return document.querySelector('[data-motion-key="' + CSS.escape(key) + '"]');
   }
@@ -133,12 +133,31 @@
   }
   function view(state) {
     return structuredClone({ board: state.board, turn: state.turn, current: state.current, phase: state.phase, winner: state.winner, winners: state.winners,
-      age: state.age, round: state.round, role: state.role, bank: state.bank, players: state.players });
+      age: state.age, round: state.round, role: state.role, bank: state.bank, players: state.players, scores: state.scores });
   }
   function transition(kind, before, after, dom, calls) {
     stats.actions++; stats.last = { game: kind, methods: calls.map(call => call.name), time: Date.now() };
     if (!enabled()) return;
-    if (before.board && after.board) {
+    if (kind === 'yinsh' && before.board && after.board) {
+      const action = calls.find(c => c.name === 'play')?.args[1], handled = new Set();
+      if (action?.type === 'move') {
+        fly(dom.get('piece:' + action.from), target('piece:' + action.to), { piece: true, hide: true });
+        arrive(target('piece:' + action.from), 0, true); handled.add(action.from); handled.add(action.to);
+      }
+      for (let i = 0; i < after.board.length; i++) {
+        if (handled.has(i) || before.board[i] === after.board[i]) continue;
+        const old = before.board[i], next = after.board[i], destination = target('piece:' + i);
+        if (old && next && old < 3 && next < 3) {
+          const ghost = ghostAt(dom.get('piece:' + i)); stats.flips = (stats.flips || 0) + 1;
+          run(ghost, [{ transform: 'rotateY(0deg)', opacity: 1 }, { transform: 'rotateY(90deg)', opacity: 0 }], { duration: 180 }, () => removeGhost(ghost));
+          run(destination, [{ transform: 'rotateY(-90deg)', opacity: 0 }, { transform: 'rotateY(0deg)', opacity: 1 }], { duration: 200, delay: 160, fill: 'backwards' });
+        } else if (!next && old >= 3 && after.scores?.[old - 3] > before.scores?.[old - 3]) {
+          fly(dom.get('piece:' + i), document.querySelector('[data-yinsh-score="' + (old - 2) + ':' + after.scores[old - 3] + '"]'));
+        } else if (next) arrive(destination, 0, true);
+        else capture(dom.get('piece:' + i));
+      }
+      if (before.turn !== after.turn) pulse(target('player:' + (after.turn - 1)));
+    } else if (before.board && after.board) {
       const moved = new Set(), destinations = new Set();
       const primary = calls.find(call => ['playChess', 'playXiangqi'].includes(call.name));
       if (primary) {
