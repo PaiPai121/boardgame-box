@@ -1,0 +1,694 @@
+{
+  "source": "https://github.com/mangorine/Burgundy",
+  "revision": "46d571db815880382c3d3d15f9233c7d43cd3788",
+  "notes": "Unmodified classic board/tile image files. No expansion tiles are used.",
+  "assets": [
+    {
+      "path": "animals/2cattle.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/2cattle.jpg",
+      "bytes": 2804,
+      "sha256": "0c3e2fae0714d92a2733f4701e0b71410d45945c58d65ee25022eb226ea85ad9"
+    },
+    {
+      "path": "animals/2chickens.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/2chickens.jpg",
+      "bytes": 2501,
+      "sha256": "65a2e56160c20a5ce3a970f188789ae320d27c5cc201ed9845d17b24778d045f"
+    },
+    {
+      "path": "animals/2pigs.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/2pigs.jpg",
+      "bytes": 2445,
+      "sha256": "d63471f35da5b4a9e219e5a5db3dc1cbd0d4190e3690eed0826958813d370e89"
+    },
+    {
+      "path": "animals/2sheep.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/2sheep.jpg",
+      "bytes": 2678,
+      "sha256": "cbb57607609c97a10264a5e6aa1b63ee8e057c8e8300ffa885e67e74d938fe1e"
+    },
+    {
+      "path": "animals/3cattle.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/3cattle.jpg",
+      "bytes": 2879,
+      "sha256": "6a0f69e09f1d7acac5cc65bda391512abecaa98eb64fbd0dd82885fe66d84b79"
+    },
+    {
+      "path": "animals/3chickens.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/3chickens.jpg",
+      "bytes": 2589,
+      "sha256": "89081415cbdf68a253070ea1fd0d0bc7ae6c3f4b4619449ac7ae91a743195dfa"
+    },
+    {
+      "path": "animals/3pigs.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/3pigs.jpg",
+      "bytes": 2516,
+      "sha256": "96f6a097e71be7f949fd6e7a4633cd4761c6444d8e5dcdea8bfdd4061d14d630"
+    },
+    {
+      "path": "animals/3sheep.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/3sheep.jpg",
+      "bytes": 2799,
+      "sha256": "5b7c3f099aa9e10deba319c8c0cece672e9d83ce0984fb426ff608988000359d"
+    },
+    {
+      "path": "animals/4cattle.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/4cattle.jpg",
+      "bytes": 2940,
+      "sha256": "8b1a8f0175cb556e9e75703e81c63891ff259dbcffd1c864d3726dcbe513ad62"
+    },
+    {
+      "path": "animals/4chickens.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/4chickens.jpg",
+      "bytes": 2664,
+      "sha256": "367a2b3c55e66d450fa36b80755376b1895180c1bdd938df4f77e11cecb8767f"
+    },
+    {
+      "path": "animals/4pigs.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/4pigs.jpg",
+      "bytes": 2561,
+      "sha256": "105b8bd8ae56a0d6dd38c96e0610a342f87c478079d31b705624052e5333e2d4"
+    },
+    {
+      "path": "animals/4sheep.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/animals/4sheep.jpg",
+      "bytes": 2874,
+      "sha256": "2ca3738fe577c178227d90b0876731a448c1842f24a164361e963b6ea933e433"
+    },
+    {
+      "path": "boards/board1.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board1.jpg",
+      "bytes": 46990,
+      "sha256": "d6aee95d99326ad28ca46207bc178f74381e0ad102e89a8f38931f4ac82182af"
+    },
+    {
+      "path": "boards/board2.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board2.jpg",
+      "bytes": 47161,
+      "sha256": "16481bad85d098a4afa984cf15a4eb4f92fb6d8e39e4a075d7eb52ec719d7aea"
+    },
+    {
+      "path": "boards/board3.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board3.jpg",
+      "bytes": 47279,
+      "sha256": "a88c30a0ee7187c71d312ba1591858e04e0846c06e7933d9c567ddf51278aa89"
+    },
+    {
+      "path": "boards/board4.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board4.jpg",
+      "bytes": 47130,
+      "sha256": "d57758a9106e7194ff524732644309abdfdb8031be6daaf84ed6aefe2c3bdf26"
+    },
+    {
+      "path": "boards/board5.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board5.jpg",
+      "bytes": 47032,
+      "sha256": "faf9fa21589bc0441023ba4f2267d01371f8b63a4893a80e23b6bfe90b88b3ef"
+    },
+    {
+      "path": "boards/board6.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board6.jpg",
+      "bytes": 47169,
+      "sha256": "adcbb73605c78421aaef4269149f75276ddc8fab2fac55c5250210110a561db2"
+    },
+    {
+      "path": "boards/board7.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board7.jpg",
+      "bytes": 47124,
+      "sha256": "2c099e7c8d5827c667a99d155adfff0da33b0583aaac704c56979e2af57983f3"
+    },
+    {
+      "path": "boards/board8.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board8.jpg",
+      "bytes": 47328,
+      "sha256": "d440fe5ad45e19506e3f41ee5e33a8c18ca6510457d4f226786ec112fee56199"
+    },
+    {
+      "path": "boards/board9.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/boards/board9.jpg",
+      "bytes": 46988,
+      "sha256": "9f9f3081e33531f25c6a67e290a2d594b59c64e0bb844bbd8c16aa0798cac005"
+    },
+    {
+      "path": "buildings/bank.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/bank.jpg",
+      "bytes": 2136,
+      "sha256": "8ca98486db2a1f9e745a50d36c1603362ac6fb6942434dcdaba26e70688f2624"
+    },
+    {
+      "path": "buildings/boarding-house.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/boarding-house.jpg",
+      "bytes": 2227,
+      "sha256": "9280a7056ba77fa532f6d2d15a61e119f3ed7899109d4830d78699746c6401d3"
+    },
+    {
+      "path": "buildings/carpenters-workshop.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/carpenters-workshop.jpg",
+      "bytes": 2225,
+      "sha256": "b7fd164a3f2c1257928d311ff08bbfe3164391c8c41d36375b7e99667fefc32f"
+    },
+    {
+      "path": "buildings/church.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/church.jpg",
+      "bytes": 2315,
+      "sha256": "499a192aae25d0568e0fa5a9738a5edc54e9ab10000eaa6470188664cc3f412e"
+    },
+    {
+      "path": "buildings/city-hall.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/city-hall.jpg",
+      "bytes": 2300,
+      "sha256": "fedaebb497293f9d8c065c2aa5fed3e0f9f0c79fea48b3c9f6a470b63491786f"
+    },
+    {
+      "path": "buildings/market.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/market.jpg",
+      "bytes": 2307,
+      "sha256": "89e3b77b7656e5012aa508d45261ae58b79811ba2942349a10ac1326ef44f1b5"
+    },
+    {
+      "path": "buildings/warehouse.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/warehouse.jpg",
+      "bytes": 2136,
+      "sha256": "af031bcb2d3f8f56893d2d5f7a1dde613aea320180750e9c856b7e1c238e7805"
+    },
+    {
+      "path": "buildings/watchtower.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/buildings/watchtower.jpg",
+      "bytes": 2026,
+      "sha256": "caf55cf3f38c9befc14dcee0e0329bde6fa40655fcb9bb3b8645c08bedff89ed"
+    },
+    {
+      "path": "castle.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/castle.jpg",
+      "bytes": 2774,
+      "sha256": "b6102a9f33be008ecf0175a90395df399187e6fa3edbb0c1eee57dc39402ea8d"
+    },
+    {
+      "path": "goods/goods1.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods1.jpg",
+      "bytes": 1640,
+      "sha256": "c2e7f99036211bddc6966f17b7331c502deb80e8302fffb5006da1df72e38308"
+    },
+    {
+      "path": "goods/goods2.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods2.jpg",
+      "bytes": 1615,
+      "sha256": "e5f6b6bed84a3cf5ce7b5957605cde3e30be542e48a7d1bc5e9473c3ab5aafa7"
+    },
+    {
+      "path": "goods/goods3.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods3.jpg",
+      "bytes": 1742,
+      "sha256": "9d162f7039765b1d958ec839b5370adeafd3a923bc8beb99629638c069067834"
+    },
+    {
+      "path": "goods/goods4.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods4.jpg",
+      "bytes": 1843,
+      "sha256": "275eee66feaf17bfac30ab2ede14319209cac5d1100a045679f02117748dd959"
+    },
+    {
+      "path": "goods/goods5.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods5.jpg",
+      "bytes": 1714,
+      "sha256": "ef0a777ada8c2b75468dc42155b6b9c2aa5d816d8725529707d26ecbc586622d"
+    },
+    {
+      "path": "goods/goods6.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/goods/goods6.jpg",
+      "bytes": 1917,
+      "sha256": "407e07069f71fb7adf02167602574a16d271773684793258b81787d3ad28f063"
+    },
+    {
+      "path": "knowledge/knowledge1.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge1.jpg",
+      "bytes": 2352,
+      "sha256": "61351b3f5a8817952134019b74d062084b88e4dc7c17351cb10580ed6f8c8edd"
+    },
+    {
+      "path": "knowledge/knowledge10.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge10.jpg",
+      "bytes": 2454,
+      "sha256": "98b902d535e8693c037412fcf0627820042e1b3cd8621163560a5e6229e6f355"
+    },
+    {
+      "path": "knowledge/knowledge11.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge11.jpg",
+      "bytes": 2463,
+      "sha256": "badc5d0074101d889c3ee3fc2672d135b519c4c2d814b6622a1be82fb87637c1"
+    },
+    {
+      "path": "knowledge/knowledge12.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge12.jpg",
+      "bytes": 2447,
+      "sha256": "e80193688efa1c6307bd738a8307bbf7a94cebd9067dcbf3c5b816824c0c5ba3"
+    },
+    {
+      "path": "knowledge/knowledge13.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge13.jpg",
+      "bytes": 2479,
+      "sha256": "dc0e93b12ea6de3795629b629bbc65527c3a7e9edd526a914603f8880c758496"
+    },
+    {
+      "path": "knowledge/knowledge14.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge14.jpg",
+      "bytes": 2447,
+      "sha256": "c99c0dce7e620961e5d6a3347fe68a4fbeed924b1a92c7d3cd59547ab895f38e"
+    },
+    {
+      "path": "knowledge/knowledge15.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge15.jpg",
+      "bytes": 2432,
+      "sha256": "dc2a4c1e0f3aeb863b2e1b5dc93c3497375dfe803ca2e8c196c4a2a18e5873fa"
+    },
+    {
+      "path": "knowledge/knowledge16.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge16.jpg",
+      "bytes": 2470,
+      "sha256": "65aa9e419f779d425b2f347e6967a695a2e4745a440295e7e7e63895945051e0"
+    },
+    {
+      "path": "knowledge/knowledge17.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge17.jpg",
+      "bytes": 2339,
+      "sha256": "52742800453caae44c63837feaecbdac7e58530ee4db519d1fadcb59c60fa8f3"
+    },
+    {
+      "path": "knowledge/knowledge18.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge18.jpg",
+      "bytes": 2481,
+      "sha256": "9a3e1376ff54b5e2991aecb711ebc822f76e07c5458dc02b11c35c2709dbfbe4"
+    },
+    {
+      "path": "knowledge/knowledge19.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge19.jpg",
+      "bytes": 2477,
+      "sha256": "6df7b1138f6a2c904a4814bd1184ac83c32db602dc733ddac276e79ee1f0e629"
+    },
+    {
+      "path": "knowledge/knowledge2.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge2.jpg",
+      "bytes": 2455,
+      "sha256": "ac160103c63af0cea8afe014961c8012a505c4003cb4036c6b21f667efd2b408"
+    },
+    {
+      "path": "knowledge/knowledge20.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge20.jpg",
+      "bytes": 2484,
+      "sha256": "58ff88fd3c6960484e2a345735816441cefa800f5bb48063394b86eb5e6317be"
+    },
+    {
+      "path": "knowledge/knowledge21.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge21.jpg",
+      "bytes": 2479,
+      "sha256": "cc82b3dfb916dc2ec2da85ff182696abb91b3f316faad50ee9e4386bfc183f6f"
+    },
+    {
+      "path": "knowledge/knowledge22.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge22.jpg",
+      "bytes": 2431,
+      "sha256": "8f7eab34c734564f200ec2512f602454bdf48a1e26a8aa03fc6b5a8c9bf4b4c3"
+    },
+    {
+      "path": "knowledge/knowledge23.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge23.jpg",
+      "bytes": 2458,
+      "sha256": "191ffde287dfb9437e9a6ef7d473d658c29baf30b03e1ac1d1269e0bcaa7b838"
+    },
+    {
+      "path": "knowledge/knowledge24.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge24.jpg",
+      "bytes": 2447,
+      "sha256": "f5b3bca7ef77dd0a2e5614a3f2f3ce05a95dfe79b9aeda82fbbea37927c5e7bc"
+    },
+    {
+      "path": "knowledge/knowledge25.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge25.jpg",
+      "bytes": 2361,
+      "sha256": "5b08e807236405a45042383afb9117419cf2e07c75c529c6e8934f3db1ed8dcb"
+    },
+    {
+      "path": "knowledge/knowledge26.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge26.jpg",
+      "bytes": 2390,
+      "sha256": "4100eae2bc7a49372af8b6c9854a5fff1a01840f444befba550ff24465cb619f"
+    },
+    {
+      "path": "knowledge/knowledge3.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge3.jpg",
+      "bytes": 2462,
+      "sha256": "d09292bf272873c8619656a31fbb8cffd81c0e90215c4e0a29541addd058e11c"
+    },
+    {
+      "path": "knowledge/knowledge4.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge4.jpg",
+      "bytes": 2471,
+      "sha256": "249b35530fd0234c76976eccd088e5ee4a2cc86c5aa2f65d8d624e1143368d15"
+    },
+    {
+      "path": "knowledge/knowledge5.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge5.jpg",
+      "bytes": 2451,
+      "sha256": "ad694df738aff39266ea2d1d92e7539fa3dcb9de4f9762a404294002b4156b5c"
+    },
+    {
+      "path": "knowledge/knowledge6.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge6.jpg",
+      "bytes": 2509,
+      "sha256": "e8369ebd260595422870bee8377e954672d68b24f10bdf2f6fa7bba39e070d08"
+    },
+    {
+      "path": "knowledge/knowledge7.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge7.jpg",
+      "bytes": 2347,
+      "sha256": "a60e2049d203f67ebe01ecd03a451d904e303ea8c414b1e6ae4f469122fab34e"
+    },
+    {
+      "path": "knowledge/knowledge8.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge8.jpg",
+      "bytes": 2388,
+      "sha256": "1c34d462ffca0993ec6777a577255e3114b20cf39e309f7fbe3fd28804b08ae7"
+    },
+    {
+      "path": "knowledge/knowledge9.jpg",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/knowledge/knowledge9.jpg",
+      "bytes": 2407,
+      "sha256": "deeeadc0ac74b9d5d94556744d748b14c4eeeaf60748f768b947fbed8ec46768"
+    },
+    {
+      "path": "mine.png",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/mine.png",
+      "bytes": 10059,
+      "sha256": "509e732e704624eff9872755ded89eaab51d4fee41607026379d981b6ee53d24"
+    },
+    {
+      "path": "ship.png",
+      "url": "https://raw.githubusercontent.com/mangorine/Burgundy/46d571db815880382c3d3d15f9233c7d43cd3788/images/ship.png",
+      "bytes": 10749,
+      "sha256": "07b4cfd0e374f2f010846c935b8d3f0f72d92b5529b5e8371276dbfae300746b"
+    }
+  ],
+  "publisher_art": {
+    "source": "https://cdn.1j1ju.com/medias/04/f5/f9-the-castles-of-burgundy-rulebook.pdf",
+    "pdf_sha256": "6fb4eb68f7fc788d9c68f325e310648def996faf16016aa81140c6f3dc798b1c",
+    "assets": [
+      {
+        "path": "original/warehouse.jpeg",
+        "xref": 229,
+        "width": 62,
+        "height": 106,
+        "bytes": 2012,
+        "sha256": "4cc0d336376e8db3c99dd53b34effb755c21f72fb6ab00afcc41547abcc2705f"
+      },
+      {
+        "path": "original/watchtower.jpeg",
+        "xref": 256,
+        "width": 60,
+        "height": 108,
+        "bytes": 2050,
+        "sha256": "14c9fa83f37fb12b59e790f64de8364c74d1a4fa0b698b00a96edf9bd695e053"
+      },
+      {
+        "path": "original/carpenters-workshop.jpeg",
+        "xref": 228,
+        "width": 61,
+        "height": 108,
+        "bytes": 1979,
+        "sha256": "756f356eec82464aa125978711b4e18bd67793cd006ca905c2d48cacebc1be05"
+      },
+      {
+        "path": "original/church.jpeg",
+        "xref": 254,
+        "width": 60,
+        "height": 106,
+        "bytes": 2122,
+        "sha256": "102a60c6cdcef9219843b2c4396b758f4a491532a4df4fe72a0e90ada80c1f78"
+      },
+      {
+        "path": "original/market.jpeg",
+        "xref": 251,
+        "width": 61,
+        "height": 108,
+        "bytes": 2230,
+        "sha256": "5d4aabecb41356acdc8760256bded66afbad1d1c689c2e8463aa10f9d7f53fd8"
+      },
+      {
+        "path": "original/boarding-house.jpeg",
+        "xref": 227,
+        "width": 60,
+        "height": 108,
+        "bytes": 2259,
+        "sha256": "43996516ec857408fd9886e1f006aafd7df65cbeb4abadcdc46de336f5f6357b"
+      },
+      {
+        "path": "original/bank.jpeg",
+        "xref": 225,
+        "width": 60,
+        "height": 106,
+        "bytes": 2058,
+        "sha256": "f5b37fd7d34a6c8097159c564f45fd4001825572d1df09d80b6d223ad6c5295e"
+      },
+      {
+        "path": "original/city-hall.jpeg",
+        "xref": 226,
+        "width": 60,
+        "height": 106,
+        "bytes": 2216,
+        "sha256": "2091fd8fb26a6d54ff32df5d2c46370ba4ec368e0101cc39703a3e36dd5e45c7"
+      },
+      {
+        "path": "original/castle.jpeg",
+        "xref": 205,
+        "width": 41,
+        "height": 47,
+        "bytes": 1131,
+        "sha256": "45454db0f5e7f8374b7ea855541ca54e8c0ec0edb6672d07d8fd77acdf0e6ab0"
+      },
+      {
+        "path": "original/mine.jpeg",
+        "xref": 195,
+        "width": 41,
+        "height": 47,
+        "bytes": 1152,
+        "sha256": "c76d36f23d330cd201dfb86b7199c32d94a7f54dbb50287735ae632e01db8e68"
+      },
+      {
+        "path": "original/ship.jpeg",
+        "xref": 209,
+        "width": 40,
+        "height": 46,
+        "bytes": 1067,
+        "sha256": "689e4a17e672dffce9e62b0ccbc7290ff97c4619a6d59c74b733b0a26fcf2cbf"
+      },
+      {
+        "path": "original/estate-1.jpeg",
+        "xref": 78,
+        "width": 418,
+        "height": 290,
+        "bytes": 26621,
+        "sha256": "09b05fab96df76a2b89286684389e9c0196117f0b7e47cd4dd71c60d787d37ad"
+      },
+      {
+        "path": "original/knowledge-1.jpeg",
+        "xref": 340,
+        "width": 128,
+        "height": 156,
+        "bytes": 2823,
+        "sha256": "4b9197c55a59a08dce807fcac45e8b1076602cd47b945b5c90dc98f3ca111bb2"
+      },
+      {
+        "path": "original/knowledge-2.jpeg",
+        "xref": 336,
+        "width": 128,
+        "height": 156,
+        "bytes": 3041,
+        "sha256": "a4480e1fbbe949072c231078d62cf3addea4782d8be21324aae10355242c35e5"
+      },
+      {
+        "path": "original/knowledge-3.jpeg",
+        "xref": 334,
+        "width": 128,
+        "height": 156,
+        "bytes": 2988,
+        "sha256": "c0789b836e3b24dd4ed278345bd33b490d7355fbebd36ea77234f03be39595d5"
+      },
+      {
+        "path": "original/knowledge-4.jpeg",
+        "xref": 332,
+        "width": 128,
+        "height": 156,
+        "bytes": 2969,
+        "sha256": "211e09b91c592457a73a9fbeb413f9e5c223530e554b985512dc17acd9551a59"
+      },
+      {
+        "path": "original/knowledge-5.jpeg",
+        "xref": 330,
+        "width": 128,
+        "height": 156,
+        "bytes": 2935,
+        "sha256": "610bd8971b1949c8696f556fd4ae39048028804138c1c185239716e23d6311cf"
+      },
+      {
+        "path": "original/knowledge-6.jpeg",
+        "xref": 348,
+        "width": 128,
+        "height": 156,
+        "bytes": 2920,
+        "sha256": "34a6fb32daa977dcca31d2d6a02407461d70f7246bb64b6aede57b6c704be9e1"
+      },
+      {
+        "path": "original/knowledge-7.jpeg",
+        "xref": 346,
+        "width": 128,
+        "height": 156,
+        "bytes": 3113,
+        "sha256": "1ff28c76106e58c26a9015e8d9f3231e8d48ba62367ba12492ad67bce76978ea"
+      },
+      {
+        "path": "original/knowledge-8.jpeg",
+        "xref": 344,
+        "width": 128,
+        "height": 156,
+        "bytes": 2800,
+        "sha256": "5f80da8f4ad3b7ffb826ae2999e2f6a7e468e0af68eeda5fd16ad6b5d1886310"
+      },
+      {
+        "path": "original/knowledge-9.jpeg",
+        "xref": 342,
+        "width": 128,
+        "height": 156,
+        "bytes": 2798,
+        "sha256": "5dd93a96d01c8ff242af01544f5c2798165b7167fdd5edc1bb40680d8ebe91bf"
+      },
+      {
+        "path": "original/knowledge-10.jpeg",
+        "xref": 338,
+        "width": 128,
+        "height": 156,
+        "bytes": 2946,
+        "sha256": "391bf02348ece44ad54e96caac3b4fde1b34b69060646f9a4752e0dfcbc4d898"
+      },
+      {
+        "path": "original/knowledge-11.jpeg",
+        "xref": 365,
+        "width": 128,
+        "height": 156,
+        "bytes": 2984,
+        "sha256": "85410a98213afef7f4b0a30901ccc823c372b4d801787321aa287d2386a792df"
+      },
+      {
+        "path": "original/knowledge-12.jpeg",
+        "xref": 390,
+        "width": 128,
+        "height": 156,
+        "bytes": 2894,
+        "sha256": "8b1414cda60732383d1db0cabce1d22c0f8392a9c98293de62ab462eca8186a2"
+      },
+      {
+        "path": "original/knowledge-13.jpeg",
+        "xref": 401,
+        "width": 128,
+        "height": 156,
+        "bytes": 2953,
+        "sha256": "be5524583c693922cb66781486344a457208b0c231d6d1bfcb92ab90dea6eec6"
+      },
+      {
+        "path": "original/knowledge-14.jpeg",
+        "xref": 388,
+        "width": 128,
+        "height": 156,
+        "bytes": 2976,
+        "sha256": "3a64aa3e9758278e01fb7d7a00947da957eb6da61ef6b470b7dcfe8dc0638bbb"
+      },
+      {
+        "path": "original/knowledge-15.jpeg",
+        "xref": 399,
+        "width": 128,
+        "height": 156,
+        "bytes": 3267,
+        "sha256": "56a35ec3186991829118dabc588e4e8d97f809b2ed71d42fe8d2e526ab01f66a"
+      },
+      {
+        "path": "original/knowledge-16.jpeg",
+        "xref": 396,
+        "width": 128,
+        "height": 156,
+        "bytes": 2975,
+        "sha256": "f9fd487dac5a47381348a8ce0d26a04f34740a57688c1da9d2b4ae818debd1c9"
+      },
+      {
+        "path": "original/knowledge-17.jpeg",
+        "xref": 364,
+        "width": 129,
+        "height": 156,
+        "bytes": 3076,
+        "sha256": "a0e385b39fa9c18ebf87869f3b17428718bb88e5d30e9e9605e8ff519872046a"
+      },
+      {
+        "path": "original/knowledge-18.jpeg",
+        "xref": 368,
+        "width": 128,
+        "height": 156,
+        "bytes": 2992,
+        "sha256": "9fba835941a6de3a144e7fca60ee053189197ca4981f6cd81ba7cd35c3fa2572"
+      },
+      {
+        "path": "original/knowledge-19.jpeg",
+        "xref": 373,
+        "width": 128,
+        "height": 156,
+        "bytes": 2950,
+        "sha256": "775076e8e920fad36995e2c68fdd9556c4c65467164c4d1a964f5b71b5c07f07"
+      },
+      {
+        "path": "original/knowledge-20.jpeg",
+        "xref": 375,
+        "width": 129,
+        "height": 156,
+        "bytes": 3025,
+        "sha256": "154ab22f7f9b4a987ff84ffc2ba928962e16753d2094fd7862b3c2471d71133a"
+      },
+      {
+        "path": "original/knowledge-21.jpeg",
+        "xref": 382,
+        "width": 128,
+        "height": 156,
+        "bytes": 3099,
+        "sha256": "774feabb026d5e3d1da93c52d2204121f8488e9c3a198cd06bd1d350cfd632d2"
+      },
+      {
+        "path": "original/knowledge-23.jpeg",
+        "xref": 386,
+        "width": 128,
+        "height": 156,
+        "bytes": 3040,
+        "sha256": "cdf47ab1dfd6f9d2a61c0ef2e7780df26b83507ee3b49a64429c336e0554e1f0"
+      },
+      {
+        "path": "original/knowledge-24.jpeg",
+        "xref": 397,
+        "width": 128,
+        "height": 156,
+        "bytes": 3125,
+        "sha256": "84bc57e8f007e49f82007875f15c9571d24965332ab5f32064ea11de4bae46e8"
+      },
+      {
+        "path": "original/knowledge-25.jpeg",
+        "xref": 394,
+        "width": 128,
+        "height": 156,
+        "bytes": 2881,
+        "sha256": "af2a481d16d808a4beb979f8ba6338937569893023c61bc22dd5f44069295bc7"
+      },
+      {
+        "path": "original/knowledge-26.jpeg",
+        "xref": 392,
+        "width": 128,
+        "height": 156,
+        "bytes": 2876,
+        "sha256": "415ec7aa66bf70b0a507c97f5c13d8b9b42cf3d2f0d1fa2b6eebaf5e5eef0f84"
+      }
+    ],
+    "notes": "Raw embedded image objects. Building strips are framed in CSS; no image bytes are altered."
+  }
+}

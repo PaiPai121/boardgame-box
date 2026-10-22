@@ -133,7 +133,7 @@
   }
   function view(state) {
     return structuredClone({ board: state.board, turn: state.turn, current: state.current, phase: state.phase, winner: state.winner, winners: state.winners,
-      age: state.age, round: state.round, role: state.role, bank: state.bank, players: state.players, scores: state.scores });
+      age: state.age, era: state.era, round: state.round, role: state.role, bank: state.bank, players: state.players, scores: state.scores });
   }
   function transition(kind, before, after, dom, calls) {
     stats.actions++; stats.last = { game: kind, methods: calls.map(call => call.name), time: Date.now() };
@@ -207,6 +207,19 @@
           if (residents > previous) fly(dom.get('workers:ship') || dom.get('workers:supply'), destination, { token: true });
           if (puertoAction?.type === 'allocate' && index === before.current) {
             document.querySelectorAll('.pr-board .pr-worker-badge').forEach((node, i) => arrive(node, Math.min(i * 25, 150), true));
+          }
+        }
+        if (kind === 'burgundy') {
+          if (p.workers !== old.workers) pulse(target('workers:' + index));
+          if (p.silver !== old.silver) pulse(target('silver:' + index));
+          if (before.round !== after.round || before.era !== after.era) {
+            document.querySelectorAll('.bu-die-button .bu-die-face').forEach((node, n) =>
+              run(node, [{ transform: 'rotate(-100deg) scale(.65)', opacity: .3 }, { transform: 'rotate(16deg) scale(1.08)', opacity: 1 }, { transform: 'rotate(0) scale(1)', opacity: 1 }], { duration: 580, delay: n * 80 }));
+          }
+          const regions = (p.completed || []).filter(r => !old.completed.includes(r));
+          if (regions.length && window.BurgundyData) for (const r of regions) {
+            for (const cell of window.BurgundyData.regions[r].cells) arrive(document.querySelector('.bu-hex[data-hex="' + cell + '"]'), 80, true);
+            pulse(document.querySelector('.bu-score-total'));
           }
         }
         if (p.coins !== old.coins || p.vp !== old.vp || p.stages?.length !== old.stages?.length) pulse(destination);

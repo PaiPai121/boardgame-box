@@ -44,6 +44,12 @@
       href: 'puerto-rico.html', color: 'jade', saveKey: 'boardgame-box-puerto-rico-v1'
     },
     {
+      id: 'burgundy', name: '勃艮第城堡', english: 'THE CASTLES OF BURGUNDY',
+      genre: '经营策略', players: '2–4 人', duration: '60–90 分钟',
+      summary: '双骰经营，六角领地。修筑城堡、沿河造船、发展城市与牧场，体验五阶段的连锁建造。',
+      href: 'burgundy.html', color: 'burgundy', saveKey: 'boardgame-box-burgundy-v1'
+    },
+    {
       id: 'go', name: '围棋', english: 'GO',
       genre: '经典对弈', players: '1–2 人', duration: '15–90 分钟',
       summary: '从 9 路入门到 19 路对局，围地提子，停一手后数子定胜负。',
@@ -88,8 +94,8 @@
           value.round + ' 轮 · ' + String(value.players[value.current]?.name || '文明') + ' 选牌',
         finished: value.phase === 'gameover' };
       }
-      if (game.id === 'puerto-rico') {
-        if (value.version !== 1 || value.kind !== 'puerto-rico' || !Array.isArray(value.players) || !Number.isInteger(value.current)) return null;
+      if (game.id === 'puerto-rico' || game.id === 'burgundy') {
+        if (value.version !== 1 || value.kind !== game.id || !Array.isArray(value.players) || !Number.isInteger(value.current)) return null;
         return { label: value.phase === 'gameover' ? '已完成的对局' : '第 ' + value.round + ' 轮 · ' + String(value.players[value.current]?.name || '玩家') + ' 行动', finished: value.phase === 'gameover' };
       }
       if (game.id === 'yinsh') {
@@ -113,6 +119,7 @@
     } catch { return null; }
   }
   function cover(id, hero) {
+    if (id === 'burgundy') return '<div class="cover cover-burgundy" aria-hidden="true"><span class="bu-cover-stars">✦</span><img class="bu-cover-map" src="assets/burgundy/original/estate-1.jpeg" alt=""><img class="bu-cover-castle" src="assets/burgundy/original/castle.jpeg" alt=""><span class="bu-cover-label">THE CASTLES OF BURGUNDY</span></div>';
     if (id === 'yinsh') return '<div class="cover cover-yinsh" aria-hidden="true"><span class="yn-cover-grid"></span><i class="yn-cover-ring one"></i><i class="yn-cover-ring two"></i><i class="yn-cover-ring three"></i><i class="yn-cover-marker a"></i><i class="yn-cover-marker b"></i><i class="yn-cover-marker c"></i><span class="yn-cover-label">Y I N S H</span></div>';
     if (id === 'puerto-rico') return '<div class="cover cover-puerto' + (hero ? ' hero-cover' : '') + '" aria-hidden="true"><img class="pr-cover-board" src="assets/puerto-rico/boards/island.png" alt=""><img class="pr-cover-ship" src="assets/puerto-rico/decoration/sailing_ship.png" alt=""><span class="pr-cover-label">PUERTO RICO</span></div>';
     if (id === 'splendor-classic') return '<div class="cover cover-splendor cover-base' + (hero ? ' hero-cover' : '') + '" aria-hidden="true">' +
